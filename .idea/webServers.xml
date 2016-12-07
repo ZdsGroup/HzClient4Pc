@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ac40f3df-4140-483a-8b6c-b1d87f0bdcf2" name="tomcat7" url="http://localhost:8080/HzClient4Pc">
+        <fileTransfer port="0" mountedRoot="C:\Java\Tomcat7\webapps\HzClient4Pc" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
