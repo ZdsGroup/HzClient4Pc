@@ -50,16 +50,11 @@
     attributionControl: true,
   };
   var map = new L.map('map', mapOptions);
-  //var tileLayer = new L.TileLayer('http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer');
-  var tileLayer =  new L.esri.TiledMapLayer('http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer', {
+  var tileLayer = new L.esri.tiledMapLayer({
+      url: 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer',
       maxZoom: 13,
-      minZoom: 0,
-      continuousWorld: true
+      minZoom: 3,
   }).addTo(map);
-  //map.addLayer(tileLayer);
-  //map.setView([23.019866,114.293175], 3);
-
-
 </script>
 
 </body>
