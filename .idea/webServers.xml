@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="ac40f3df-4140-483a-8b6c-b1d87f0bdcf2" name="tomcat7" url="http://localhost:8080/HzClient4Pc">
-        <fileTransfer port="0" mountedRoot="C:\Java\Tomcat7\webapps\HzClient4Pc" accessType="MOUNT" />
+      <webServer id="75a48995-2c42-45bb-a435-ad3dc203afbe" name="T9" url="http://localhost:8080/sghy">
+        <fileTransfer port="0" mountedRoot="E:\tomcat9\webapps\sghy" accessType="MOUNT" />
       </webServer>
     </option>
   </component>

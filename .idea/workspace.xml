@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="599ec959-7c71-4ed7-ba78-cba2979efad3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/LBM.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/css/libs/leaflet/1.0.2/leaflet.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/imgs/leaflet/1.0.2/images/layers-2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/imgs/leaflet/1.0.2/images/layers.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/imgs/leaflet/1.0.2/images/marker-icon-2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/imgs/leaflet/1.0.2/images/marker-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/imgs/leaflet/1.0.2/images/marker-shadow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/jquery/1.7.2/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/jquery/1.7.2/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/leaflet/1.0.2/leaflet-src.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/leaflet/1.0.2/leaflet-src.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/libs/leaflet/1.0.2/leaflet.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/plugins/esri-leaflet/2.0.6/esri-leaflet.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/plugins/esri-leaflet/2.0.6/esri-leaflet.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/plugins/proj4/proj4-min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/plugins/proj4/proj4.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/js/plugins/proj4/proj4leaflet.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
+    </list>
+    <list id="6ddf4a62-c107-401d-b57a-1af04de2dd8d" name="Failed commit: Default" comment="测试WMS服务加载，目前还有点问题。">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/images/layers-2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/images/layers.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/images/marker-icon-2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/images/marker-icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/images/marker-shadow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/jquery/1.7.2/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/jquery/1.7.2/jquery.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/leaflet-src.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/leaflet.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/leaflet/leaflet.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/esri-leaflet/2.0.6/esri-leaflet.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/proj4leaflet/proj4-compressed.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/proj4leaflet/proj4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plugins/proj4leaflet/proj4leaflet.js" />
+    </list>
+    <ignored path="HzClient4Pc.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="HzClient4Pc" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="winnerlbm@163.com" />
+        <option value="LBM" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/index.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="886" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proj4leaflet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="esri-leaflet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="2.0.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="leaflet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HzClient4Pc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jquery" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="1.7.2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jquery.js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NestingTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../常用源代码/JS/LeafLet/onemap" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="js-jscs-nodeInterpreter" value="E:\Program Files (x86)\nodejs\node.exe" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="nodejs_interpreter_path" value="E:/Program Files (x86)/nodejs/node" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Project\SVN-ZDS\Sources\SGHYWEB\HzClient4Pc\plugins" />
+      <recent name="D:\Project\SVN-ZDS\Sources\SGHYWEB\HzClient4Pc\libs\leaflet" />
+      <recent name="D:\Project\SVN-ZDS\Sources\SGHYWEB\HzClient4Pc\plugins\esri-leaflet\2.0.6" />
+      <recent name="D:\Project\SVN-ZDS\Sources\SGHYWEB\HzClient4Pc\plugins\proj4" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="FirefoxRemoteDebugType" factoryName="Firefox Remote">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="599ec959-7c71-4ed7-ba78-cba2979efad3" name="Default" comment="" />
+      <created>1481099578010</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1481099578010</updated>
+      <workItem from="1481099579664" duration="4539000" />
+      <workItem from="1481113065453" duration="691000" />
+      <workItem from="1481114163323" duration="2550000" />
+      <workItem from="1481118920095" duration="1897000" />
+      <workItem from="1481120839421" duration="177000" />
+      <workItem from="1481175012881" duration="489000" />
+    </task>
+    <task id="LOCAL-00001" summary="测试WMS服务加载，目前还有点问题。">
+      <created>1481175339953</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1481175339954</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="10343000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35796916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2451613" sideWeight="0.5050378" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32845744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24613403" sideWeight="0.49496222" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13297872" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="测试WMS服务加载，目前还有点问题。" />
+    <option name="LAST_COMMIT_MESSAGE" value="测试WMS服务加载，目前还有点问题。" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1120">
+          <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libs/leaflet/leaflet-src.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="1608" column="0" lean-forward="false" selection-start-line="1608" selection-start-column="0" selection-end-line="1608" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/proj4leaflet/proj4leaflet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="172" column="0" lean-forward="false" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
+          <folding>
+            <marker date="1471917585350" expanded="true" signature="20:493" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="86:140" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="181:296" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="302:491" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="514:4474" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="566:654" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="693:1584" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="737:884" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="916:1025" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1069:1187" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1230:1581" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1244:1277" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1319:1553" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1376:1444" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1485:1548" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1617:3906" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1650:1708" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1743:2730" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1830:1966" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="1972:2100" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2243:2364" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2394:2440" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2476:2684" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2568:2679" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2608:2673" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2757:3148" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2871:2908" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="2914:3144" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="3175:3631" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="3449:3476" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="3636:3684" ph="/*...*/" />
+            <marker date="1471917585350" expanded="true" signature="3729:3903" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="3779:3884" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="3851:3879" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="3945:4354" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="3988:4351" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="4041:4283" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="4177:4277" ph="{...}" />
+            <marker date="1471917585350" expanded="true" signature="4403:4454" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/esri-leaflet/2.0.6/esri-leaflet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="4" column="24585" lean-forward="false" selection-start-line="4" selection-start-column="24585" selection-end-line="4" selection-end-column="24585" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
