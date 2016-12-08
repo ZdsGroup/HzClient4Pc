@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>arcgis rest service load</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
+    <!-- Load Leaflet and plugins-->
+    <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
+    <script src="libs/leaflet/leaflet-src.js"></script>
+    <script src="plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js"></script>
+    <script src="plugins/proj4leaflet/proj4-compressed.js"></script>
+    <script src="plugins/proj4leaflet/proj4leaflet.js"></script>
+
+    <style>
+        body { margin:0; padding:0; }
+        #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var centerPoint = new L.LatLng(23.125965,114.438019);
+    var crs = new L.Proj.CRS("EPSG:2383",
+        "+proj=tmerc +lat_0=0 +lon_0=114 +k=1 +x_0=500000 +y_0=0 +a=6378140 +b=6356755.288157528 +units=m +no_defs",
+        {
+            origin: [-5123200,10002100],  // 将刚刚的 Origin 复制到这里
+            resolutions: [                 // 所有的分辨率复制到这里
+                2116.670900008467,
+                1058.3354500042335,
+                529.1677250021168,
+                264.5838625010584,
+                132.2919312505292,
+                66.1459656252646,
+                33.0729828126323,
+                16.933367200067735,
+                8.466683600033868,
+                4.233341800016934,
+                2.116670900008467,
+                1.0583354500042335,
+                0.5291677250021167,
+                0.26458386250105836,
+                0.13229193125052918,
+            ]
+        });
+    var mapOptions = {
+        center: centerPoint,
+        zoom: 3,
+        crs: crs,
+        attributionControl: true,
+    };
+    var url1="http://gis.huizhou.gov.cn:8399/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E6%94%BF%E5%8A%A1%E5%BA%95%E5%9B%BE/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E5%9C%B0%E5%9B%BE%E6%94%BF%E5%8A%A1%E4%BA%8C%E7%89%88DEMV12/MapServer";
+    var url2="http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer";
+    var map = L.map('map', mapOptions);
+    var tileLayer = new L.esri.tiledMapLayer({
+        url: url1,
+        maxZoom: 15,
+        minZoom: 3,
+    });
+    map.addLayer(tileLayer);
+</script>
+
+</body>
+</html>

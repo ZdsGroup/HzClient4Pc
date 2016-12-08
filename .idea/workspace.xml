@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="599ec959-7c71-4ed7-ba78-cba2979efad3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index4.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="6ddf4a62-c107-401d-b57a-1af04de2dd8d" name="Failed commit: Default" comment="测试WMS服务加载，目前还有点问题。" />
@@ -49,8 +50,8 @@
       <file leaf-file-name="index4.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index4.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+            <state relative-caret-position="315">
+              <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -315,7 +316,7 @@
       <workItem from="1481118920095" duration="1897000" />
       <workItem from="1481120839421" duration="177000" />
       <workItem from="1481175012881" duration="489000" />
-      <workItem from="1481200446688" duration="3630000" />
+      <workItem from="1481200446688" duration="4031000" />
     </task>
     <task id="LOCAL-00001" summary="测试WMS服务加载，目前还有点问题。">
       <created>1481175339953</created>
@@ -324,11 +325,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481175339954</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="惠州的两个底图服务都完成调用">
+      <created>1481204120316</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1481204120316</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13973000" />
+    <option name="totallyTimeSpent" value="14374000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -346,7 +354,7 @@
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.156875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2451613" sideWeight="0.5050378" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24412532" sideWeight="0.5050378" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.13189772" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -380,7 +388,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="测试WMS服务加载，目前还有点问题。" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试WMS服务加载，目前还有点问题。" />
+    <MESSAGE value="惠州的两个底图服务都完成调用" />
+    <option name="LAST_COMMIT_MESSAGE" value="惠州的两个底图服务都完成调用" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -476,8 +485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index4.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+        <state relative-caret-position="315">
+          <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
           <folding />
         </state>
       </provider>
