@@ -3,7 +3,9 @@
     <meta charset="utf-8" />
     <title>arcgis rest service load</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!--Load cmn js and css-->
     <script src="libs/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/cmn/utils.css">
     <!-- Load Leaflet and plugins-->
     <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
     <script src="libs/leaflet/leaflet-src.js"></script>
@@ -11,13 +13,9 @@
     <script src="plugins/proj4leaflet/proj4-compressed.js"></script>
     <script src="plugins/proj4leaflet/proj4leaflet.js"></script>
 
-    <style>
-        body { margin:0; padding:0; }
-        #map { position: absolute; top:0; bottom:0; right:0; left:0; }
-    </style>
 </head>
 <body>
-<div id="map"></div>
+<div id="map" class="mapfull"></div>
 <script>
     var centerPoint = new L.LatLng(23.125965,114.438019);
     var crs = new L.Proj.CRS("EPSG:2383",
@@ -41,8 +39,6 @@
             ]
         });
     var mapOptions = {
-        center: centerPoint,
-        zoom: 3,
         crs: crs,
         attributionControl: true,
     };
@@ -54,7 +50,7 @@
         maxZoom: 13,
         minZoom: 3,
     });
-    map.addLayer(tileLayer);
+    map.addLayer(tileLayer).setView(centerPoint,3,mapOptions);
 </script>
 
 </body>
