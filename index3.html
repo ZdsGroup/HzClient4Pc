@@ -46,9 +46,11 @@
         crs: crs,
         attributionControl: true,
     };
+    var url1="http://gis.huizhou.gov.cn:8399/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E6%94%BF%E5%8A%A1%E5%BA%95%E5%9B%BE/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E5%9C%B0%E5%9B%BE%E6%94%BF%E5%8A%A1%E4%BA%8C%E7%89%88DEMV12/MapServer";
+    var url2="http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer";
     var map = L.map('map', mapOptions);
     var tileLayer = new L.esri.tiledMapLayer({
-        url: 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer',
+        url: url2,
         maxZoom: 13,
         minZoom: 3,
     });
