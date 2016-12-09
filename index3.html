@@ -4,8 +4,9 @@
     <title>arcgis rest service load</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <!--Load cmn js and css-->
-    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
     <link rel="stylesheet" href="css/cmn/utils.css">
+    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="js/mapservice.js"></script>
     <!-- Load Leaflet and plugins-->
     <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
     <script src="libs/leaflet/leaflet-src.js"></script>
@@ -13,50 +14,26 @@
     <script src="plugins/proj4leaflet/proj4-compressed.js"></script>
     <script src="plugins/proj4leaflet/proj4leaflet.js"></script>
 
+    <script>
+        function init() {
+            var mapUrl="http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer";
+            var centerPoint = new L.LatLng(23.125965,114.438019);
+            var myStartZoom=3;
+            esriTileLayerXian80.setMapUrl(mapUrl);
+            var mapOptions=esriTileLayerXian80.getMapOptions();
+            var myMaxZoom=esriTileLayerXian80.getMaxZoom();
+            var myMinZoom=esriTileLayerXian80.getMinZoom();
+            var map = L.map('map', mapOptions);
+            var tileLayer = new L.esri.tiledMapLayer({
+                url: mapUrl,
+                maxZoom: myMaxZoom,
+                minZoom: myMinZoom,
+            });
+            map.addLayer(tileLayer).setView(centerPoint,myStartZoom);
+        }
+    </script>
 </head>
-<body>
+<body onload="init()">
 <div id="map" class="mapfull"></div>
-<script>
-    var centerPoint = new L.LatLng(23.125965,114.438019);
-    var xian80Wkid = "EPSG:2383";
-    var xian80WkidProj4 = "+proj=tmerc +lat_0=0 +lon_0=114 +k=1 +x_0=500000 +y_0=0 +a=6378140 +b=6356755.288157528 +units=m +no_defs";
-    var myOrigin = [-5123200,10002100];
-    var myResolutions=[529.167725002117,
-        264.583862501058,
-        132.291931250529,
-        66.1459656252646,
-        33.0729828126323,
-        16.9333672000677,
-        8.46668360003387,
-        4.23334180001693,
-        2.11667090000847,
-        1.05833545000423,
-        0.529167725002117,
-        0.264583862501058,
-        0.132291931250529];
-    var myService1="http://gis.huizhou.gov.cn:8399/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E6%94%BF%E5%8A%A1%E5%BA%95%E5%9B%BE/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E5%9C%B0%E5%9B%BE%E6%94%BF%E5%8A%A1%E4%BA%8C%E7%89%88DEMV12/MapServer";
-    var myService2="http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer";
-    var myMaxZoom=13;
-    var myMinZoom=3;
-    var myStartZoom=3;
-    var crs = new L.Proj.CRS(xian80Wkid,xian80WkidProj4,
-        {
-            origin: myOrigin,
-            resolutions: myResolutions,
-        });
-    var mapOptions = {
-        crs: crs,
-        attributionControl: true,
-    };
-
-    var map = L.map('map', mapOptions);
-    var tileLayer = new L.esri.tiledMapLayer({
-        url: myService2,
-        maxZoom: myMaxZoom,
-        minZoom: myMinZoom,
-    });
-    map.addLayer(tileLayer).setView(centerPoint,myStartZoom,mapOptions);
-</script>
-
 </body>
 </html>
