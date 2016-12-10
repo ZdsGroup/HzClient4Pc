@@ -3,37 +3,28 @@
     <meta charset="utf-8" />
     <title>arcgis rest service load</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <!--Load cmn js and css-->
-    <link rel="stylesheet" href="css/cmn/utils.css">
-    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="js/mapservice.js"></script>
-    <!-- Load Leaflet and plugins-->
+    <!-- Load libs and plugins-->
     <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
+    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="libs/leaflet/leaflet-src.js"></script>
     <script src="plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js"></script>
     <script src="plugins/proj4leaflet/proj4-compressed.js"></script>
     <script src="plugins/proj4leaflet/proj4leaflet.js"></script>
+    <!--Load cmn js and css-->
+    <link rel="stylesheet" href="css/cmn/utils.css">
+    <script src="js/cmn/mapservice.js"></script>
+    <script src="js/pages/index.js"></script>
 
-    <script>
-        function init() {
-            var mapUrl="http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer";
-            var centerPoint = new L.LatLng(23.125965,114.438019);
-            var myStartZoom=3;
-            esriTileLayerXian80.setMapUrl(mapUrl);
-            var mapOptions=esriTileLayerXian80.getMapOptions();
-            var myMaxZoom=esriTileLayerXian80.getMaxZoom();
-            var myMinZoom=esriTileLayerXian80.getMinZoom();
-            var map = L.map('map', mapOptions);
-            var tileLayer = new L.esri.tiledMapLayer({
-                url: mapUrl,
-                maxZoom: myMaxZoom,
-                minZoom: myMinZoom,
-            });
-            map.addLayer(tileLayer).setView(centerPoint,myStartZoom);
-        }
-    </script>
 </head>
-<body onload="init()">
+<body >
 <div id="map" class="mapfull"></div>
 </body>
+<script>
+    var mapUrl="http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer";
+    var centerPoint = new L.LatLng(23.125965,114.438019);
+    var myStartZoom=3;
+    $(document).ready(
+        pageLoadMap("map",mapUrl,centerPoint,myStartZoom,"匡恩技术支持")
+    )
+</script>
 </html>

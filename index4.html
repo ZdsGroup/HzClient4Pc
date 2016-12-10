@@ -3,37 +3,28 @@
     <meta charset="utf-8" />
     <title>arcgis rest service load</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <!--Load cmn js and css-->
-    <link rel="stylesheet" href="css/cmn/utils.css">
-    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
-      <script src="js/mapservice.js"></script>
-    <!-- Load Leaflet and plugins-->
+    <!-- Load libs and plugins-->
     <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
+    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="libs/leaflet/leaflet-src.js"></script>
     <script src="plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js"></script>
     <script src="plugins/proj4leaflet/proj4-compressed.js"></script>
     <script src="plugins/proj4leaflet/proj4leaflet.js"></script>
+    <!--Load cmn js and css-->
+    <link rel="stylesheet" href="css/cmn/utils.css">
+    <script src="js/cmn/mapservice.js"></script>
+    <script src="js/pages/index.js"></script>
 
-    <script>
-        function init() {
-            var mapUrl="http://gis.huizhou.gov.cn:8399/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E6%94%BF%E5%8A%A1%E5%BA%95%E5%9B%BE/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E5%9C%B0%E5%9B%BE%E6%94%BF%E5%8A%A1%E4%BA%8C%E7%89%88DEMV12/MapServer";
-            var centerPoint = new L.LatLng(23.125965,114.438019);
-            var myStartZoom=3;
-            esriTileLayerXian80.setMapUrl(mapUrl);
-            var mapOptions=esriTileLayerXian80.getMapOptions();
-            var myMaxZoom=esriTileLayerXian80.getMaxZoom();
-            var myMinZoom=esriTileLayerXian80.getMinZoom();
-            var map = L.map('map', mapOptions);
-            var tileLayer = new L.esri.tiledMapLayer({
-                url: mapUrl,
-                maxZoom: myMaxZoom,
-                minZoom: myMinZoom,
-            });
-            map.addLayer(tileLayer).setView(centerPoint,myStartZoom);
-        }
-    </script>
 </head>
-<body onload="init()">
+<body>
 <div id="map" class="mapfull"></div>
 </body>
+<script>
+    var mapUrl="http://gis.huizhou.gov.cn:8399/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E6%94%BF%E5%8A%A1%E5%BA%95%E5%9B%BE/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E5%9C%B0%E5%9B%BE%E6%94%BF%E5%8A%A1%E4%BA%8C%E7%89%88DEMV12/MapServer";
+    var centerPoint = new L.LatLng(23.125965,114.438019);
+    var myStartZoom=3;
+    $(document).ready(
+        pageLoadMap("map",mapUrl,centerPoint,myStartZoom,"匡恩技术支持")
+    )
+</script>
 </html>
