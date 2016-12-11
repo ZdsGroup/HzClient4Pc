@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="599ec959-7c71-4ed7-ba78-cba2979efad3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/HzClient4Pc.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dictionaries/LBM.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <list id="6ddf4a62-c107-401d-b57a-1af04de2dd8d" name="Failed commit: Default" comment="测试WMS服务加载，目前还有点问题。" />
@@ -406,7 +400,7 @@
       <workItem from="1481120839421" duration="177000" />
       <workItem from="1481175012881" duration="489000" />
       <workItem from="1481200446688" duration="19657000" />
-      <workItem from="1481344885522" duration="16898000" />
+      <workItem from="1481344885522" duration="16911000" />
     </task>
     <task id="LOCAL-00001" summary="测试WMS服务加载，目前还有点问题。">
       <created>1481175339953</created>
@@ -464,11 +458,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481474690977</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="添加查询框">
+      <created>1481474806334</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1481474806334</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46898000" />
+    <option name="totallyTimeSpent" value="46911000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
