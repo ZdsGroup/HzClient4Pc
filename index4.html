@@ -5,16 +5,21 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <!-- Load libs and plugins-->
     <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
-    <script src="libs/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="plugins/layer/jstree/themes/default/style.min.css">
+    <!--<script src="libs/jquery/1.7.2/jquery.min.js"></script>-->
+    <script src="libs/jquery/1.11.0/jquery-1.11.0.min.js"></script>
     <script src="libs/leaflet/leaflet-src.js"></script>
     <script src="plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js"></script>
     <script src="plugins/proj4leaflet/proj4-compressed.js"></script>
     <script src="plugins/proj4leaflet/proj4leaflet.js"></script>
+    <script src="plugins/search/placeholderTypewriter.js"></script>
+    <script src="plugins/layer/jquery.popmenu.js"></script>
+    <script src="plugins/layer/jstree/jstree.js"></script>
     <!--Load cmn js and css-->
     <link rel="stylesheet" href="css/cmn/utils.css">
     <script src="js/cmn/mapservice.js"></script>
     <script src="js/pages/index.js"></script>
-    <script src="plugins/search/placeholderTypewriter.js"></script>
+
 
 </head>
 <body>
@@ -23,6 +28,14 @@
         <input class="inputbox" type="text" name="search" id="search">
         <input class="submit" type="button" value="Search">
     </form>
+</div>
+<div id="layerPanel">
+    <span class="layer_pop_ctrl">
+        <div>
+					<img style="height:100px;width:100px"/>
+				</div>
+    </span>
+    <div id="layerContainer"></div>
 </div>
 <div id="map" class="mapfull"></div>
 </body>
@@ -35,6 +48,9 @@
         function () {
             pageLoadMap("map",mapUrl,centerPoint,myStartZoom,supportName);
             searchPanelInit();
+            layerPanelInit();
+
+
         }
     )
 </script>

@@ -6,7 +6,7 @@
  License: Unlicense <http://unlicense.org>
  */
 (function ($) {
-  "use strict";
+  // "use strict";
 
   $.fn.placeholderTypewriter = function (options) {
 

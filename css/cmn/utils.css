@@ -68,3 +68,25 @@ body {
 input:focus {
     outline: none;
 }
+/*图层组件*/
+#layerPanel{
+    position: absolute;
+    /*float: right;*/
+    right: 100px;
+    top: 10px;
+    z-index: 1000;
+    background-color: #f6921e;
+    height: 50px;
+    width: 50px;
+    /*background-image: url('../../libs/leaflet/images/layers-2x.png');*/
+}
+
+#layerPanel .layer_pop_ctrl{
+    height: 100px;
+    width: 100px;
+}
+#layerContainer{
+    height: 100px;
+    width: 200px;
+    padding: 10px;
+}

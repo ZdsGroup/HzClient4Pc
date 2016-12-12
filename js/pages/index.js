@@ -29,3 +29,25 @@ function searchPanelInit() {
     ];
     $('#search').placeholderTypewriter({text: searchText});
 }
+//图层组件初始化
+function layerPanelInit() {
+    $('#layerPanel').popmenu({
+        'width': '200px',
+        'background':'#e67e22',
+        'focusColor':'#c0392b',
+        'borderRadius':'10px',
+        'top': '20',
+        'left': '170',
+        'border':'3px solid #d2527f'
+    });
+    $('#layerContainer').jstree({'plugins':["wholerow","checkbox"],
+        'core' : {
+            'data' : [
+                { "text" : "Root node", "children" : [
+                    { "text" : "Child node 1" },
+                    { "text" : "Child node 2" }
+                ]}
+            ]
+        }
+    });
+}
