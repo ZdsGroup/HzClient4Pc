@@ -32,20 +32,20 @@ function searchPanelInit() {
 //图层组件初始化
 function layerPanelInit() {
     $('#layerPanel').popmenu({
-        'width': '200px',
-        'background':'#e67e22',
-        'focusColor':'#c0392b',
-        'borderRadius':'10px',
-        'top': '20',
-        'left': '170',
-        'border':'3px solid #d2527f'
+        'width': '220px',
+        'background':'#FFFFFF',
+        'focusColor':'#B2E7FF',
+        'borderRadius':'5px',
+        'top': '0',
+        'left': '190',
+        'border':'2px solid #4280ed'
     });
     $('#layerContainer').jstree({'plugins':["wholerow","checkbox"],
         'core' : {
             'data' : [
-                { "text" : "Root node", "children" : [
-                    { "text" : "Child node 1" },
-                    { "text" : "Child node 2" }
+                { "text" : "水务专题服务", "children" : [
+                    { "text" : "水源保护区" },
+                    { "text" : "水源取水口" },
                 ]}
             ]
         }

@@ -40,7 +40,7 @@ Based on jQuery 2.0.3
                 'background': settings.background,
                 'width': settings.width,
                 'float': 'left',
-                'padding': '0',
+                'padding': '5',
                 'border-radius': settings.borderRadius,
                 'border': settings.border,
                 'z-index':1000

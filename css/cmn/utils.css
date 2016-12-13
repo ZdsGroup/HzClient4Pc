@@ -71,22 +71,23 @@ input:focus {
 /*图层组件*/
 #layerPanel{
     position: absolute;
-    /*float: right;*/
-    right: 100px;
+    right: 80px;
     top: 10px;
     z-index: 1000;
-    background-color: #f6921e;
-    height: 50px;
-    width: 50px;
-    /*background-image: url('../../libs/leaflet/images/layers-2x.png');*/
+    height: auto;
+    width: auto;
+
 }
 
 #layerPanel .layer_pop_ctrl{
-    height: 100px;
-    width: 100px;
+    height:48px;
+    width:57px;
+}
+#layerPanel img{
+    height:48px;
+    width:57px;
+    /*background-image: url("../../plugins/layer/layer.png");*/
 }
 #layerContainer{
-    height: 100px;
-    width: 200px;
-    padding: 10px;
+    min-height: 50px;
 }
