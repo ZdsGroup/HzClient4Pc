@@ -64,8 +64,15 @@ function layerPanelInit() {
 }
 
 function removeMapLayer(layerId,layerAdd) {
-    var restlayer=getEsriRestDymLayer(layerAdd);
-    map.remove(restlayer);
+    // var restlayer=getEsriRestDymLayer(layerAdd);
+    // map.remove(restlayer);
+    map.eachLayer(function (layer) {
+        debugger
+        var tadd=layerAdd.split('#')[0];
+        if (layer.service.options.url==tadd){
+            layer.remove();
+        }
+    })
 }
 
 function addMapLayer(layerId,layerAdd) {
@@ -75,8 +82,6 @@ function addMapLayer(layerId,layerAdd) {
 function getEsriRestDymLayer(layerAdd) {
     var tid=layerAdd.split('#')[1];
     var tadd=layerAdd.split('#')[0];
-    var myMaxZoom=esriTileLayerXian80.getMaxZoom();
-    var myMinZoom=esriTileLayerXian80.getMinZoom();
     var restlayer = new L.esri.dynamicMapLayer({
         url: tadd,
         layers:[0,1],
