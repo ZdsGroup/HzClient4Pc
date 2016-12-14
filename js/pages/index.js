@@ -156,8 +156,8 @@ function addMapOverLayer(layerId,layerTxt,layerAdd) {
 }
 
 function getEsriRestDymLayer(layerAdd) {
-    var tid=layerAdd.split('#')[1];
-    var tadd=layerAdd.split('#')[0];
+    var arrT=layerAdd.split('#');
+    var tadd=arrT[0];
     var restlayer = new L.esri.dynamicMapLayer({
         url: tadd,
         layers:[0,1],
