@@ -6,6 +6,7 @@
     <!-- Load libs and plugins-->
     <link rel="stylesheet" href="libs/leaflet/leaflet.css" />
     <link rel="stylesheet" href="plugins/layer/jstree/themes/default/style.min.css">
+    <link rel="stylesheet" href="plugins/layer/iconlayer/iconLayers.css">
     <!--<script src="libs/jquery/1.7.2/jquery.min.js"></script>-->
     <script src="libs/jquery/1.11.0/jquery-1.11.0.min.js"></script>
     <script src="libs/leaflet/leaflet-src.js"></script>
@@ -15,10 +16,14 @@
     <script src="plugins/search/placeholderTypewriter.js"></script>
     <script src="plugins/layer/jquery.popmenu.js"></script>
     <script src="plugins/layer/jstree/jstree.js"></script>
+    <script src="plugins/layer/iconlayer/iconLayers.js"></script>
+
     <!--Load cmn js and css-->
     <link rel="stylesheet" href="css/cmn/utils.css">
     <script src="js/cmn/mapservice.js"></script>
     <script src="js/pages/index.js"></script>
+
+
 
 
 </head>
@@ -32,7 +37,7 @@
 <div id="layerPanel">
     <span class="layer_pop_ctrl">
         <div>
-            <img src="plugins/layer/layer.png"/>
+            <img src="img/layer/layer.png"/>
         </div>
     </span>
     <div id="layerContainer"></div>
@@ -49,6 +54,7 @@
             pageLoadMap("map",mapUrl,centerPoint,myStartZoom,supportName);
             searchPanelInit();
             layerPanelInit();
+            baseMapChangeInit();
         }
     )
 </script>

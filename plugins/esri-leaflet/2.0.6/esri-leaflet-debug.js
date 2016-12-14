@@ -2631,7 +2631,6 @@
 	    if (this.options.f === 'json') {
 	      this.service.request('export', params, function (error, response) {
 	        if (error) { return; } // we really can't do anything here but authenticate or requesterror will fire
-debugger;
 	        if (this.options.token) {
 	          response.href += ('?token=' + this.options.token);
 	        }

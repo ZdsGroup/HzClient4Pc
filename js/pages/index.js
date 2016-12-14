@@ -2,15 +2,16 @@
  * Created by zhao on 2016/12/10.
  */
 
-var map=null;
+var myMap=null;
+var myLayers=[];
 //地图初始化
-function pageLoadMap(mapId,mapUrl,centerPoint,myStartZoom,supportName){
+function pageLoadMap(mapPanelId,mapUrl,centerPoint,myStartZoom,supportName){
     esriTileLayerXian80.setMapUrl(mapUrl);
     var mapOptions=esriTileLayerXian80.getMapOptions();
     var myMaxZoom=esriTileLayerXian80.getMaxZoom();
     var myMinZoom=esriTileLayerXian80.getMinZoom();
 
-    map = L.map(mapId, mapOptions);
+    myMap = L.map(mapPanelId, mapOptions);
     // L.esri.support.cors=false;
     var tileLayer = new L.esri.tiledMapLayer({
         url: mapUrl,
@@ -18,11 +19,28 @@ function pageLoadMap(mapId,mapUrl,centerPoint,myStartZoom,supportName){
         minZoom: myMinZoom,
         attribution: supportName,
     });
-    map.addLayer(tileLayer).setView(centerPoint,myStartZoom);
-    map.zoomControl.setPosition("topright");
+    myMap.addLayer(tileLayer).setView(centerPoint,myStartZoom);
+    myMap.zoomControl.setPosition("topright");
+    addLayerToMyLayers('raster',tileLayer,'影像','1');
+    // map.laye
 
     //todo  not work,need extend crs's distance funtion
-    // L.control.scale().setPosition('bottomleft').addTo(map);
+    // L.control.scale().setPosition('bottomleft').addTo(myMap);
+}
+//底图切换组件初始化
+function baseMapChangeInit() {
+    debugger
+    var bmLayer=getLayersByType('1');
+    if (bmLayer.length>0){
+        var iconLayersControl = new L.Control.IconLayers(
+            bmLayer,
+            {
+                position: 'bottomright',
+                maxLayersInRow: 5
+            }
+        );
+        iconLayersControl.addTo(myMap);
+    }
 }
 //查询插件初始化
 function searchPanelInit() {
@@ -62,14 +80,39 @@ function layerPanelInit() {
         }
     });
 }
+function getLayersByType(layerType) {
+    // '1': base map layer
+    // 2': over layer
+    var  layersT=[];
+    for (var i=0; i<myLayers.length; i++){
+        var type=myLayers[i].type;
+        if (type==layerType){
+            layersT.push(myLayers[i]);
+        }
+    }
+    return layersT;
+};
 
+function addLayerToMyLayers(layerId,layerObj,title,layerType) {
+    if (layerId!=null&&layerObj!=null&&title!=null&&layerType!=null)
+    {
+        var iconT='img/layer/'+layerId+'.png';
+        var tempR={ title: title,
+            layer: layerObj,
+            icon: iconT,
+            type: layerType };
+        myLayers.push(tempR);
+    }
+}
+//todo don't work
 function removeMapLayer(layerId,layerAdd) {
     // var restlayer=getEsriRestDymLayer(layerAdd);
-    // map.remove(restlayer);
-    map.eachLayer(function (layer) {
+    // myMap.remove(restlayer);
+    var templayer='http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer/';
+    myMap.eachLayer(function (layer) {
         debugger
         var tadd=layerAdd.split('#')[0];
-        if (layer.service.options.url==tadd){
+        if (layer.service==null||layer.service.options.url==tadd){
             layer.remove();
         }
     })
@@ -77,7 +120,7 @@ function removeMapLayer(layerId,layerAdd) {
 
 function addMapLayer(layerId,layerAdd) {
     var restlayer=getEsriRestDymLayer(layerAdd);
-    map.addLayer(restlayer);
+    myMap.addLayer(restlayer);
 }
 function getEsriRestDymLayer(layerAdd) {
     var tid=layerAdd.split('#')[1];
