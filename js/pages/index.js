@@ -93,6 +93,7 @@ var layerData=[
             'children':[{
                 'id' :'id11',
                 'text' : '惠城区行政区划',
+                'icon':'plugins/layer/layermini.png',
                 'data' : 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%83%A0%E5%9F%8E%E5%8C%BA%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer#0'
             }],
         },
@@ -101,6 +102,7 @@ var layerData=[
             'children':[{
                 'id' :'id21',
                 'text' : '水源保护区',
+                'icon':'plugins/layer/layermini.png',
                 'data' : 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer#1'
             }],
         },
