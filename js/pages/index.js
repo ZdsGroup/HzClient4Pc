@@ -9,7 +9,9 @@ function pageLoadMap(mapId,mapUrl,centerPoint,myStartZoom,supportName){
     var mapOptions=esriTileLayerXian80.getMapOptions();
     var myMaxZoom=esriTileLayerXian80.getMaxZoom();
     var myMinZoom=esriTileLayerXian80.getMinZoom();
+
     map = L.map(mapId, mapOptions);
+    // L.esri.support.cors=false;
     var tileLayer = new L.esri.tiledMapLayer({
         url: mapUrl,
         maxZoom: myMaxZoom,
@@ -62,25 +64,23 @@ function layerPanelInit() {
 }
 
 function removeMapLayer(layerId,layerAdd) {
-    var restlayer=getEsriRestLayer(layerAdd);
+    var restlayer=getEsriRestDymLayer(layerAdd);
     map.remove(restlayer);
 }
 
 function addMapLayer(layerId,layerAdd) {
-    var restlayer=getEsriRestLayer(layerAdd);
-    debugger;
+    var restlayer=getEsriRestDymLayer(layerAdd);
     map.addLayer(restlayer);
 }
-function getEsriRestLayer(layerAdd) {
+function getEsriRestDymLayer(layerAdd) {
     var tid=layerAdd.split('#')[1];
     var tadd=layerAdd.split('#')[0];
     var myMaxZoom=esriTileLayerXian80.getMaxZoom();
     var myMinZoom=esriTileLayerXian80.getMinZoom();
-    var restlayer = new L.esri.tiledMapLayer({
+    var restlayer = new L.esri.dynamicMapLayer({
         url: tadd,
-        maxZoom: myMaxZoom,
-        minZoom: myMinZoom,
-        attribution: supportName,
+        layers:[0,1],
+        opacity : 0.9
     });
     return restlayer;
 }

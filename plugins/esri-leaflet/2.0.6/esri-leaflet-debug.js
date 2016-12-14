@@ -723,7 +723,8 @@
 
 	function setEsriAttribution (map) {
 	  if (map.attributionControl && !map.attributionControl._esriAttributionAdded) {
-	    map.attributionControl.setPrefix('<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Powered by <a href="https://www.esri.com">Esri</a>');
+	    // map.attributionControl.setPrefix('<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Powered by <a href="https://www.esri.com">Esri</a>');
+          map.attributionControl.setPrefix('<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
 
 	    var hoverAttributionStyle = document.createElement('style');
 	    hoverAttributionStyle.type = 'text/css';
@@ -2630,13 +2631,19 @@
 	    if (this.options.f === 'json') {
 	      this.service.request('export', params, function (error, response) {
 	        if (error) { return; } // we really can't do anything here but authenticate or requesterror will fire
-
+debugger;
 	        if (this.options.token) {
 	          response.href += ('?token=' + this.options.token);
 	        }
 	        if (this.options.proxy) {
 	          response.href = this.options.proxy + '?' + response.href;
 	        }
+              //todo my custom temp method
+			  if (response.href){
+				  var  cusHref=response.href;
+				  response.href=cusHref.replace("bjjssz","106.39.231.23");
+			  }
+			  //
 	        if (response.href) {
 	          this._renderImage(response.href, bounds);
 	        } else {

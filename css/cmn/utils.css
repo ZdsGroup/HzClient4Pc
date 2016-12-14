@@ -84,8 +84,8 @@ input:focus {
     width:57px;
 }
 #layerPanel img{
-    height:48px;
-    width:57px;
+    height:72px;
+    width:72px;
     /*background-image: url("../../plugins/layer/layer.png");*/
 }
 #layerContainer{
