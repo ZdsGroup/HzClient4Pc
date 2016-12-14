@@ -4,6 +4,10 @@
 
 var myMap=null;
 var myLayers=[];
+// '1': base map layer
+// 2': over layer
+var baseLayerType='1';
+var overLayerType='2';
 //地图初始化
 function pageLoadMap(mapPanelId,mapUrl,centerPoint,myStartZoom,supportName){
     esriTileLayerXian80.setMapUrl(mapUrl);
@@ -16,7 +20,7 @@ function pageLoadMap(mapPanelId,mapUrl,centerPoint,myStartZoom,supportName){
         minZoom: myMinZoom,
         attribution: supportName,
     });
-    addLayerToMyLayers('vector',tileLayer,'矢量','1');
+    addLayerToMyLayers('vector',tileLayer,'矢量',baseLayerType);
 
     //test basemap change temp code,because two map levels count diffcult
     var mapUrl2='http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer';
@@ -30,7 +34,7 @@ function pageLoadMap(mapPanelId,mapUrl,centerPoint,myStartZoom,supportName){
         minZoom: myMinZoom2,
         attribution: supportName,
     });
-    addLayerToMyLayers('raster',tileLayer2,'影像','1');
+    addLayerToMyLayers('raster',tileLayer2,'影像',baseLayerType);
     //
 
     myMap = L.map(mapPanelId, mapOptions);
@@ -82,19 +86,17 @@ function layerPanelInit() {
         if (data.node!=null){
            var actid=data.action;
            var layerId=data.node.id;
+           var layerTxt=data.node.text;
            var layerAdd=data.node.data;
            if (actid=="deselect_node"){
-               removeMapLayer(layerId,layerAdd);
+               removeMapOverLayer(layerId,layerAdd);
            }else if (actid=="select_node"){
-
-               addMapLayer(layerId,layerAdd);
+               addMapOverLayer(layerId,layerTxt,layerAdd);
            }
         }
     });
 }
 function getLayersByType(layerType) {
-    // '1': base map layer
-    // 2': over layer
     var  layersT=[];
     for (var i=0; i<myLayers.length; i++){
         var type=myLayers[i].type;
@@ -105,35 +107,54 @@ function getLayersByType(layerType) {
     return layersT;
 };
 
+function getLayerByLayerId(id) {
+    var  layerT=null;
+    for (var i=0; i<myLayers.length; i++){
+        var idT=myLayers[i].id;
+        if (idT==id){
+            layerT=myLayers[i];
+        }
+    }
+    return layerT;
+};
+
 function addLayerToMyLayers(layerId,layerObj,title,layerType) {
-    if (layerId!=null&&layerObj!=null&&title!=null&&layerType!=null)
-    {
+    if (layerId!=null&&layerObj!=null&&title!=null&&layerType!=null) {
         var iconT='img/layer/'+layerId+'.png';
-        var tempR={ title: title,
+        var tempR={ id: layerId,
+            title: title,
             layer: layerObj,
             icon: iconT,
             type: layerType };
         myLayers.push(tempR);
     }
 }
-//todo don't work
-function removeMapLayer(layerId,layerAdd) {
-    // var restlayer=getEsriRestDymLayer(layerAdd);
-    // myMap.remove(restlayer);
-    var templayer='http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer/';
-    myMap.eachLayer(function (layer) {
-        debugger
-        var tadd=layerAdd.split('#')[0];
-        if (layer.service==null||layer.service.options.url==tadd){
-            layer.remove();
+
+function removeLayerFromMyLayers(layerId) {
+    if (layerId!=null) {
+        for (var i=0; i<myLayers.length; i++){
+            if (layerId==myLayers[i].id){
+                myLayers.splice(i,1);
+                break;
+            }
         }
-    })
+    }
+}
+//todo don't work
+function removeMapOverLayer(layerId,layerAdd) {
+    var layerT=getLayerByLayerId(layerId);
+    if (layerT){
+        myMap.removeLayer(layerT.layer);
+    }
+    removeLayerFromMyLayers(layerId);
 }
 
-function addMapLayer(layerId,layerAdd) {
+function addMapOverLayer(layerId,layerTxt,layerAdd) {
     var restlayer=getEsriRestDymLayer(layerAdd);
     myMap.addLayer(restlayer);
+    addLayerToMyLayers(layerId,restlayer,layerTxt,overLayerType);
 }
+
 function getEsriRestDymLayer(layerAdd) {
     var tid=layerAdd.split('#')[1];
     var tadd=layerAdd.split('#')[0];
@@ -153,8 +174,8 @@ var layerData=[
             'children':[{
                 'id' :'id11',
                 'text' : '惠城区行政区划',
-                'icon':'plugins/layer/layermini.png',
-                'data' : 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%83%A0%E5%9F%8E%E5%8C%BA%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer#0'
+                'icon':'img/layer/layermini.png',
+                'data' : 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%83%A0%E5%9F%8E%E5%8C%BA%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer'
             }],
         },
         { 'id' :'id2',
@@ -162,8 +183,8 @@ var layerData=[
             'children':[{
                 'id' :'id21',
                 'text' : '水源保护区',
-                'icon':'plugins/layer/layermini.png',
-                'data' : 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer#1'
+                'icon':'img/layer/layermini.png',
+                'data' : 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
             }],
         },
     ]}
