@@ -10,26 +10,38 @@ function pageLoadMap(mapPanelId,mapUrl,centerPoint,myStartZoom,supportName){
     var mapOptions=esriTileLayerXian80.getMapOptions();
     var myMaxZoom=esriTileLayerXian80.getMaxZoom();
     var myMinZoom=esriTileLayerXian80.getMinZoom();
-
-    myMap = L.map(mapPanelId, mapOptions);
-    // L.esri.support.cors=false;
     var tileLayer = new L.esri.tiledMapLayer({
         url: mapUrl,
         maxZoom: myMaxZoom,
         minZoom: myMinZoom,
         attribution: supportName,
     });
+    addLayerToMyLayers('vector',tileLayer,'矢量','1');
+
+    //test basemap change temp code,because two map levels count diffcult
+    var mapUrl2='http://106.39.231.23/ArcGIS/rest/services/HZDG/%E5%BD%B1%E5%83%8F%E5%9B%BE/MapServer';
+    esriTileLayerXian80.setMapUrl(mapUrl2);
+    var mapOptions2=esriTileLayerXian80.getMapOptions();
+    var myMaxZoom2=esriTileLayerXian80.getMaxZoom();
+    var myMinZoom2=esriTileLayerXian80.getMinZoom();
+    var tileLayer2 = new L.esri.tiledMapLayer({
+        url: mapUrl2,
+        maxZoom: myMaxZoom2,
+        minZoom: myMinZoom2,
+        attribution: supportName,
+    });
+    addLayerToMyLayers('raster',tileLayer2,'影像','1');
+    //
+
+    myMap = L.map(mapPanelId, mapOptions);
     myMap.addLayer(tileLayer).setView(centerPoint,myStartZoom);
     myMap.zoomControl.setPosition("topright");
-    addLayerToMyLayers('raster',tileLayer,'影像','1');
-    // map.laye
 
     //todo  not work,need extend crs's distance funtion
     // L.control.scale().setPosition('bottomleft').addTo(myMap);
 }
 //底图切换组件初始化
 function baseMapChangeInit() {
-    debugger
     var bmLayer=getLayersByType('1');
     if (bmLayer.length>0){
         var iconLayersControl = new L.Control.IconLayers(
