@@ -29,8 +29,8 @@
       <file leaf-file-name="index4.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index4.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
+            <state relative-caret-position="168">
+              <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -39,11 +39,14 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/pages/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="23" column="45" lean-forward="false" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+            <state relative-caret-position="123">
+              <caret line="130" column="1" lean-forward="true" selection-start-line="130" selection-start-column="1" selection-end-line="130" selection-end-column="1" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
-                <element signature="e#3800#4580#0" expanded="false" />
+                <element signature="n#!!block;n#baseMapChangeInit#0" expanded="false" />
+                <element signature="n#!!block;n#searchPanelInit#0" expanded="false" />
+                <element signature="n#!!block;n#getEsriRestDymLayer#0" expanded="false" />
+                <element signature="e#4793#5561#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -52,8 +55,18 @@
       <file leaf-file-name="iconLayers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plugins/layer/iconlayer/iconLayers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1239">
-              <caret line="59" column="8" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+            <state relative-caret-position="1302">
+              <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index3.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index3.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -92,6 +105,9 @@
       <find>wholerow</find>
       <find>jstree.plugins.</find>
       <find>map</find>
+      <find>_getLayerCellByLayerId</find>
+      <find>_activeLayerId</find>
+      <find>debugger</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,6 +133,7 @@
         <option value="$PROJECT_DIR$/index3.html" />
         <option value="$PROJECT_DIR$/css/cmn/utils.css" />
         <option value="$PROJECT_DIR$/plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js" />
+        <option value="$PROJECT_DIR$/plugins/layer/iconlayer/iconLayers.js" />
         <option value="$PROJECT_DIR$/index4.html" />
         <option value="$PROJECT_DIR$/js/pages/index.js" />
       </list>
@@ -252,7 +269,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -269,6 +286,10 @@
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -281,6 +302,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -409,7 +434,7 @@
       <workItem from="1481592625002" duration="10517000" />
       <workItem from="1481618339915" duration="21120000" />
       <workItem from="1481683654902" duration="15606000" />
-      <workItem from="1481722142107" duration="479000" />
+      <workItem from="1481722142107" duration="8825000" />
     </task>
     <task id="LOCAL-00001" summary="测试WMS服务加载，目前还有点问题。">
       <created>1481175339953</created>
@@ -551,11 +576,39 @@
       <option name="project" value="LOCAL" />
       <updated>1481722611840</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="底图切换功能完成">
+      <created>1481722624461</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1481722624461</updated>
+    </task>
+    <task id="LOCAL-00022" summary="底图切换功能完成">
+      <created>1481722642476</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1481722642476</updated>
+    </task>
+    <task id="LOCAL-00023" summary="底图切换功能完成">
+      <created>1481729209261</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1481729209261</updated>
+    </task>
+    <task id="LOCAL-00024" summary="图层删除完成">
+      <created>1481731662427</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1481731662427</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115100000" />
+    <option name="totallyTimeSpent" value="123446000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -575,20 +628,20 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270525" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3270525" sideWeight="0.4974293" order="7" side_tool="false" content_ui="tabs" x="22" y="308" width="1556" height="243" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24613403" sideWeight="0.49496222" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.13189772" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24613403" sideWeight="0.49496222" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -633,7 +686,8 @@
     <MESSAGE value="添加图层组件" />
     <MESSAGE value="添加图层完成" />
     <MESSAGE value="底图切换功能完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="底图切换功能完成" />
+    <MESSAGE value="图层删除完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="图层删除完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -709,7 +763,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#3800#4580#0" expanded="false" />
+            <element signature="n#!!block;n#baseMapChangeInit#0" expanded="false" />
+            <element signature="n#!!block;n#searchPanelInit#0" expanded="false" />
+            <element signature="n#!!block;n#getEsriRestDymLayer#0" expanded="false" />
+            <element signature="e#4793#5561#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -746,7 +803,10 @@
           <caret line="31" column="9" lean-forward="true" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#3800#4580#0" expanded="false" />
+            <element signature="n#!!block;n#baseMapChangeInit#0" expanded="false" />
+            <element signature="n#!!block;n#searchPanelInit#0" expanded="false" />
+            <element signature="n#!!block;n#getEsriRestDymLayer#0" expanded="false" />
+            <element signature="e#4793#5561#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -780,7 +840,10 @@
           <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#3800#4580#0" expanded="false" />
+            <element signature="n#!!block;n#baseMapChangeInit#0" expanded="false" />
+            <element signature="n#!!block;n#searchPanelInit#0" expanded="false" />
+            <element signature="n#!!block;n#getEsriRestDymLayer#0" expanded="false" />
+            <element signature="e#4793#5561#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -827,7 +890,10 @@
           <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#3800#4580#0" expanded="false" />
+            <element signature="n#!!block;n#baseMapChangeInit#0" expanded="false" />
+            <element signature="n#!!block;n#searchPanelInit#0" expanded="false" />
+            <element signature="n#!!block;n#getEsriRestDymLayer#0" expanded="false" />
+            <element signature="e#4793#5561#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -951,6 +1017,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -970,47 +1037,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/cmn/mapservice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="53" column="6" lean-forward="true" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img/layer/layermini.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs/leaflet/leaflet-src.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="4469" column="27" lean-forward="false" selection-start-line="4469" selection-start-column="21" selection-end-line="4469" selection-end-column="27" />
-          <folding>
-            <element signature="e#118700#121193#0" expanded="false" />
-            <element signature="e#121197#122538#0" expanded="false" />
-            <element signature="e#122816#126000#0" expanded="false" />
-            <element signature="e#126293#135511#0" expanded="false" />
-            <element signature="e#138348#139356#0" expanded="false" />
-            <element signature="e#139543#139754#0" expanded="false" />
-            <element signature="e#164385#171431#0" expanded="false" />
-            <element signature="e#172203#175145#0" expanded="false" />
-            <element signature="e#175883#179618#0" expanded="false" />
-            <element signature="e#184566#185750#0" expanded="false" />
-            <element signature="e#186013#193418#0" expanded="false" />
-            <element signature="e#194292#195187#0" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plugins/search/placeholderTypewriter.js">
@@ -1054,18 +1091,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="7" lean-forward="true" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libs/leaflet/leaflet.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10458">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1073,6 +1103,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="861">
           <caret line="41" column="12" lean-forward="false" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,29 +1123,71 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/libs/leaflet/leaflet-src.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="12222" column="4" lean-forward="false" selection-start-line="12222" selection-start-column="4" selection-end-line="12222" selection-end-column="4" />
+          <folding>
+            <element signature="e#118700#121193#0" expanded="false" />
+            <element signature="e#121197#122538#0" expanded="false" />
+            <element signature="e#122816#126000#0" expanded="false" />
+            <element signature="e#126293#135511#0" expanded="false" />
+            <element signature="e#138348#139356#0" expanded="false" />
+            <element signature="e#139543#139754#0" expanded="false" />
+            <element signature="e#164385#171431#0" expanded="false" />
+            <element signature="e#172203#175145#0" expanded="false" />
+            <element signature="e#175883#179618#0" expanded="false" />
+            <element signature="e#184566#185750#0" expanded="false" />
+            <element signature="e#186013#193418#0" expanded="false" />
+            <element signature="e#194292#195187#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cmn/mapservice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="43" lean-forward="true" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plugins/layer/iconlayer/iconLayers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1239">
-          <caret line="59" column="8" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
+        <state relative-caret-position="1302">
+          <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index4.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="29" column="6" lean-forward="true" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
+        <state relative-caret-position="168">
+          <caret line="41" column="11" lean-forward="true" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/pages/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="45" lean-forward="false" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+        <state relative-caret-position="123">
+          <caret line="130" column="1" lean-forward="true" selection-start-line="130" selection-start-column="1" selection-end-line="130" selection-end-column="1" />
           <folding>
             <element signature="e#0#41#0" expanded="false" />
-            <element signature="e#3800#4580#0" expanded="false" />
+            <element signature="n#!!block;n#baseMapChangeInit#0" expanded="false" />
+            <element signature="n#!!block;n#searchPanelInit#0" expanded="false" />
+            <element signature="n#!!block;n#getEsriRestDymLayer#0" expanded="false" />
+            <element signature="e#4793#5561#0" expanded="false" />
           </folding>
         </state>
       </provider>
