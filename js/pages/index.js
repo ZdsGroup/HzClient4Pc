@@ -18,7 +18,7 @@ function pageLoadMap(mapPanelId,mapUrl,centerPoint,myStartZoom,supportName){
         url: mapUrl,
         maxZoom: myMaxZoom,
         minZoom: myMinZoom,
-        attribution: supportName,
+        attribution: supportName
     });
     addLayerToMyLayers('vector',tileLayer,'矢量',baseLayerType);
 
@@ -32,14 +32,16 @@ function pageLoadMap(mapPanelId,mapUrl,centerPoint,myStartZoom,supportName){
         url: mapUrl2,
         maxZoom: myMaxZoom2,
         minZoom: myMinZoom2,
-        attribution: supportName,
+        attribution: supportName
     });
     addLayerToMyLayers('raster',tileLayer2,'影像',baseLayerType);
     //
 
+
     myMap = L.map(mapPanelId, mapOptions);
     myMap.addLayer(tileLayer).setView(centerPoint,myStartZoom);
     myMap.zoomControl.setPosition("topright");
+    myMap.attributionControl.setPrefix(false);
 
     //todo  not work,need extend crs's distance funtion
     // L.control.scale().setPosition('bottomleft').addTo(myMap);

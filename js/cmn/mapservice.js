@@ -42,7 +42,7 @@ esriTileLayerXian80={
     getMapOptions:function () {
         return mapOptions = {
             crs: this.getCrs(),
-            attributionControl: true,
+            attributionControl: true
         };
     },
 
