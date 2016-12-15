@@ -723,8 +723,7 @@
 
 	function setEsriAttribution (map) {
 	  if (map.attributionControl && !map.attributionControl._esriAttributionAdded) {
-	    // map.attributionControl.setPrefix('<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Powered by <a href="https://www.esri.com">Esri</a>');
-          map.attributionControl.setPrefix('<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+	    map.attributionControl.setPrefix('<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> | Powered by <a href="https://www.esri.com">Esri</a>');
 
 	    var hoverAttributionStyle = document.createElement('style');
 	    hoverAttributionStyle.type = 'text/css';

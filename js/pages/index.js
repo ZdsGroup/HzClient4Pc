@@ -145,7 +145,7 @@ function removeLayerFromMyLayers(layerId) {
         }
     }
 }
-//todo don't work
+
 function removeMapOverLayer(layerId, layerAdd) {
     var layerT = getLayerByLayerId(layerId);
     if (layerT) {
