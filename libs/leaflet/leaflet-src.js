@@ -12392,7 +12392,11 @@ L.Control.Zoom = L.Control.extend({
 
 		// @option zoomOutTitle: String = 'Zoom out'
 		// The title set on the 'zoom out' button.
-		zoomOutTitle: 'Zoom out'
+		zoomOutTitle: 'Zoom out',
+
+		//add custom zoom home
+        zoomMinText: "Zoom min",
+        zoomMinTitle: "Zoom min"
 	},
 
 	onAdd: function (map) {
@@ -12404,6 +12408,10 @@ L.Control.Zoom = L.Control.extend({
 		        zoomName + '-in',  container, this._zoomIn);
 		this._zoomOutButton = this._createButton(options.zoomOutText, options.zoomOutTitle,
 		        zoomName + '-out', container, this._zoomOut);
+
+		//add custom zoom home
+        this._zoomMinButton = this._createButton(options.zoomMinText, options.zoomMinTitle,
+            zoomName + '-min', container, this._zoomMin, this);
 
 		this._updateDisabled();
 		map.on('zoomend zoomlevelschange', this._updateDisabled, this);
@@ -12439,6 +12447,15 @@ L.Control.Zoom = L.Control.extend({
 		}
 	},
 
+    //add custom zoom home
+    _zoomMin: function () {
+        if (this.options.minBounds) {
+            return this._map.fitBounds(this.options.minBounds);
+        }
+
+        this._map.setZoom(this._map.getMinZoom())
+    },
+
 	_createButton: function (html, title, className, container, fn) {
 		var link = L.DomUtil.create('a', className, container);
 		link.innerHTML = html;
@@ -12466,6 +12483,8 @@ L.Control.Zoom = L.Control.extend({
 
 		L.DomUtil.removeClass(this._zoomInButton, className);
 		L.DomUtil.removeClass(this._zoomOutButton, className);
+        //add custom zoom home
+        L.DomUtil.removeClass(this._zoomMinButton, className)
 
 		if (this._disabled || map._zoom === map.getMinZoom()) {
 			L.DomUtil.addClass(this._zoomOutButton, className);
@@ -12473,6 +12492,10 @@ L.Control.Zoom = L.Control.extend({
 		if (this._disabled || map._zoom === map.getMaxZoom()) {
 			L.DomUtil.addClass(this._zoomInButton, className);
 		}
+        //add custom zoom home
+        if (map._zoom === map.getMinZoom()) {
+            L.DomUtil.addClass(this._zoomMinButton, className)
+        }
 	}
 });
 
