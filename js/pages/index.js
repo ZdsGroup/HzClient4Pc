@@ -38,8 +38,8 @@ function pageLoadMap(mapPanelId, mapUrl, centerPoint, myStartZoom, supportName) 
     //
 
 
-    myMap = L.map(mapPanelId, mapOptions);
-    myMap.addLayer(tileLayer).setView(centerPoint, myStartZoom);
+    myMap = L.map(mapPanelId, mapOptions2);
+    myMap.addLayer(tileLayer2).setView(centerPoint, myStartZoom);
     myMap.zoomControl.setPosition("topright");
     myMap.attributionControl.setPrefix(false);
 
@@ -48,7 +48,7 @@ function pageLoadMap(mapPanelId, mapUrl, centerPoint, myStartZoom, supportName) 
 }
 //底图切换组件初始化
 function baseMapChangeInit() {
-    var bmLayer = getLayersByType('1');
+    var bmLayer = getLayersByType(baseLayerType);
     if (bmLayer.length > 0) {
         var iconLayersControl = new L.Control.IconLayers(
             bmLayer,
@@ -86,7 +86,7 @@ function layerPanelInit() {
         }
     });
     $('#layerContainer').on("changed.jstree", function (e, data) {
-        if (data.node != null) {
+        if (data!=null && data.node != null) {
             var actid = data.action;
             var layerId = data.node.id;
             var layerTxt = data.node.text;
@@ -96,9 +96,37 @@ function layerPanelInit() {
             } else if (actid == "select_node") {
                 addMapOverLayer(layerId, layerTxt, layerAdd);
             }
+            if (data.node.children){
+                for (var i=0;i<data.node.children.length;i++){
+                    var nodeT=$('#layerContainer').jstree(true).get_node(data.node.children[i]);
+                    keepFindLayer(nodeT, actid);
+                }
+            }
         }
     });
 }
+
+function keepFindLayer(nodeObj, actionId) {
+    if (nodeObj){
+        var layerAdd = nodeObj.data;
+        if (layerAdd){
+            var layerId = nodeObj.id;
+            var layerTxt = nodeObj.text;
+
+            if (actionId == "deselect_node") {
+                removeMapOverLayer(layerId, layerAdd);
+            } else if (actionId == "select_node") {
+                addMapOverLayer(layerId, layerTxt, layerAdd);
+            }
+        }else if (nodeObj.children != null){
+            for (var i=0;i<nodeObj.children.length;i++){
+                var nodeT=$('#layerContainer').jstree(true).get_node(nodeObj.children[i]);
+                keepFindLayer(nodeT, actionId);
+            }
+        }
+    }
+}
+
 function getLayersByType(layerType) {
     var layersT = [];
     for (var i = 0; i < myLayers.length; i++) {
@@ -150,36 +178,51 @@ function removeMapOverLayer(layerId, layerAdd) {
     var layerT = getLayerByLayerId(layerId);
     if (layerT) {
         myMap.removeLayer(layerT.layer);
+        removeLayerFromMyLayers(layerId);
     }
-    removeLayerFromMyLayers(layerId);
 }
 
 function addMapOverLayer(layerId, layerTxt, layerAdd) {
     var restlayer = getEsriRestDymLayer(layerAdd);
-    myMap.addLayer(restlayer);
-    addLayerToMyLayers(layerId, restlayer, layerTxt, overLayerType);
+    if (restlayer){
+        myMap.addLayer(restlayer);
+        addLayerToMyLayers(layerId, restlayer, layerTxt, overLayerType);
+    }
 }
 
 function getEsriRestDymLayer(layerAdd) {
-    var tid = layerAdd.split('#')[1];
-    var tadd = layerAdd.split('#')[0];
-    var restlayer = new L.esri.dynamicMapLayer({
-        url: tadd,
-        layers: [0, 1],
-        opacity: 0.9
-    });
+    var tid = null;
+    var tadd = null;
+    var restlayer = null;
+    if (layerAdd)
+    {
+        if(layerAdd.indexOf('#')>0){
+            tid = layerAdd.split('#')[1];
+            tadd = layerAdd.split('#')[0];
+        }else {
+            tadd = layerAdd;
+        }
+        restlayer = new L.esri.dynamicMapLayer({
+            url: tadd,
+            layers: [0, 1],
+            opacity: 0.9
+        });
+    }
     return restlayer;
 }
 
 //all temp date
 var layerData = [
-    {
+    {   'id': 'root',
+        'type': 'fold',
         'text': '服务目录', 'children': [
         {
             'id': 'id1',
+            'type': 'fold',
             'text': '基础服务',
             'children': [{
                 'id': 'id11',
+                'type': 'leaf',
                 'text': '惠城区行政区划',
                 'icon': 'img/layer/layermini.png',
                 'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%83%A0%E5%9F%8E%E5%8C%BA%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer'
@@ -187,9 +230,11 @@ var layerData = [
         },
         {
             'id': 'id2',
+            'type': 'fold',
             'text': '水务专题服务',
             'children': [{
                 'id': 'id21',
+                'type': 'leaf',
                 'text': '水源保护区',
                 'icon': 'img/layer/layermini.png',
                 'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
