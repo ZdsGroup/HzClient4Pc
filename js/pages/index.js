@@ -38,8 +38,8 @@ function pageLoadMap(mapPanelId, mapUrl, centerPoint, myStartZoom, supportName) 
     //
 
 
-    myMap = L.map(mapPanelId, mapOptions2);
-    myMap.addLayer(tileLayer2).setView(centerPoint, myStartZoom);
+    myMap = L.map(mapPanelId, mapOptions);
+    myMap.addLayer(tileLayer).setView(centerPoint, myStartZoom);
     myMap.zoomControl.setPosition("topright");
     myMap.attributionControl.setPrefix(false);
 
