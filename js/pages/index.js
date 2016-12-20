@@ -71,7 +71,7 @@ function searchPanelInit() {
 //图层组件初始化
 function layerPanelInit() {
     $('#layerPanel').popmenu({
-        'width': '240px',
+        'width': '260px',
         'background': '#FFFFFF',
         'focusColor': '#B2E7FF',
         'borderRadius': '5px',
@@ -212,7 +212,7 @@ function getEsriRestDymLayer(layerAdd) {
 }
 
 //all temp date
-var layerData = [
+var layerData1 = [
     {   'id': 'root',
         'type': 'fold',
         'text': '服务目录', 'children': [
@@ -240,6 +240,107 @@ var layerData = [
                 'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
             }],
         },
+    ]
+    }
+];
+
+var layerData = [
+    {   'id': 'root',
+        'type': 'fold',
+        'text': '服务目录', 'children': [
+        {
+            'id': 'id1',
+            'type': 'fold',
+            'text': '环保',
+            'children': [{
+                    'id': 'id11',
+                    'type': 'leaf',
+                    'text': '水源保护区',
+                    'icon': 'img/layer/layermini.png',
+                    'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
+                },
+                {
+                    'id': 'id12',
+                    'type': 'leaf',
+                    'text': '生态严控区',
+                    'icon': 'img/layer/layermini.png',
+                    'data': ''
+                }
+            ],
+        },
+        {
+            'id': 'id2',
+            'type': 'fold',
+            'text': '水务',
+            'children': [{
+                    'id': 'id21',
+                    'type': 'leaf',
+                    'text': '蓝线规划',
+                    'icon': 'img/layer/layermini.png',
+                    'data': ''
+                }
+            ],
+        },
+        {
+            'id': 'id3',
+            'type': 'fold',
+            'text': '交通',
+            'children': [{
+                    'id': 'id31',
+                    'type': 'leaf',
+                    'text': '城市总体规划',
+                    'icon': 'img/layer/layermini.png',
+                    'data': ''
+                },
+                {
+                    'id': 'id32',
+                    'type': 'leaf',
+                    'text': '公交线路',
+                    'icon': 'img/layer/layermini.png',
+                    'data': ''
+                }
+            ],
+        },
+        {
+            'id': 'id4',
+            'type': 'fold',
+            'text': '发改',
+            'children': [{
+                'id': 'id41',
+                'type': 'leaf',
+                'text': '主体功能区',
+                'icon': 'img/layer/layermini.png',
+                'data': ''
+                },
+                {
+                    'id': 'id42',
+                    'type': 'leaf',
+                    'text': '城市总体规划',
+                    'icon': 'img/layer/layermini.png',
+                    'data': ''
+                },
+                {
+                    'id': 'id43',
+                    'type': 'leaf',
+                    'text': '重点项目',
+                    'icon': 'img/layer/layermini.png',
+                    'data': ''
+                }
+            ],
+        },
+        {
+            'id': 'id5',
+            'type': 'fold',
+            'text': '统计',
+            'children': [{
+                'id': 'id51',
+                'type': 'leaf',
+                'text': '行政区划人口统计',
+                'icon': 'img/layer/layermini.png',
+                'data': ''
+            }
+            ],
+        }
     ]
     }
 ];
