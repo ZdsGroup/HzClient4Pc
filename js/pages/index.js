@@ -38,8 +38,8 @@ function pageLoadMap(mapPanelId, mapUrl, centerPoint, myStartZoom, supportName) 
     //
 
 
-    myMap = L.map(mapPanelId, mapOptions);
-    myMap.addLayer(tileLayer).setView(centerPoint, myStartZoom);
+    myMap = L.map(mapPanelId, mapOptions2);
+    myMap.addLayer(tileLayer2).setView(centerPoint, myStartZoom);
     myMap.zoomControl.setPosition("topright");
     myMap.attributionControl.setPrefix(false);
 
@@ -64,10 +64,11 @@ function baseMapChangeInit() {
 function searchPanelInit() {
     var searchText = [
         "您想知道什么信息?",
-        "检索四规水务信息从这里开始",
+        "检索从这里开始",
     ];
     $('#search').placeholderTypewriter({text: searchText});
 }
+
 //图层组件初始化
 function layerPanelInit() {
     $('#layerPanel').popmenu({
@@ -211,38 +212,86 @@ function getEsriRestDymLayer(layerAdd) {
     return restlayer;
 }
 
+//工具条组件初始化
+function toolBarInit() {
+    // var MyCustomMarker = L.Icon.extend({
+    //     options: {
+    //         shadowUrl: null,
+    //         iconAnchor: new L.Point(12, 12),
+    //         iconSize: new L.Point(24, 24),
+    //         iconUrl: 'link/to/image.png'
+    //     }
+    // });
+
+    var options = {
+        position: 'topright',
+        draw: {
+            polyline: {
+                shapeOptions: {
+                    color: '#f10215',
+                    weight: 3,
+                    opacity: 0.8
+                }
+            },
+            polygon: {
+                drawError: {
+                    color: '#f9ec16', // Color the shape will turn when intersects
+                    message: '不能交叉!' // Message that will show when intersect
+                },
+                shapeOptions: {
+                    color: '#f10215',
+                    weight: 3,
+                    opacity: 0.8
+                }
+            },
+            circle: false, // Turns off this drawing tool
+            rectangle: false,
+            marker: false
+        }
+    };
+    var drawControl = new L.Control.Draw(options);
+    myMap.addControl(drawControl);
+    var editableLayers = new L.FeatureGroup();
+    myMap.addLayer(editableLayers);
+    myMap.on(L.Draw.Event.CREATED, function (e) {
+        var type = e.layerType,
+            layer = e.layer;
+        editableLayers.addLayer(layer);
+    });
+}
+
 //all temp date
-var layerData1 = [
-    {   'id': 'root',
-        'type': 'fold',
-        'text': '服务目录', 'children': [
-        {
-            'id': 'id1',
-            'type': 'fold',
-            'text': '基础服务',
-            'children': [{
-                'id': 'id11',
-                'type': 'leaf',
-                'text': '惠城区行政区划',
-                'icon': 'img/layer/layermini.png',
-                'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%83%A0%E5%9F%8E%E5%8C%BA%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer'
-            }],
-        },
-        {
-            'id': 'id2',
-            'type': 'fold',
-            'text': '水务专题服务',
-            'children': [{
-                'id': 'id21',
-                'type': 'leaf',
-                'text': '水源保护区',
-                'icon': 'img/layer/layermini.png',
-                'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
-            }],
-        },
-    ]
-    }
-];
+// var layerData1 = [
+//     {   'id': 'root',
+//         'type': 'fold',
+//         'text': '服务目录', 'children': [
+//         {
+//             'id': 'id1',
+//             'type': 'fold',
+//             'text': '基础服务',
+//             'children': [{
+//                 'id': 'id11',
+//                 'type': 'leaf',
+//                 'text': '惠城区行政区划',
+//                 'icon': 'img/layer/layermini.png',
+//                 'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%83%A0%E5%9F%8E%E5%8C%BA%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer'
+//             }],
+//         },
+//         {
+//             'id': 'id2',
+//             'type': 'fold',
+//             'text': '水务专题服务',
+//             'children': [{
+//                 'id': 'id21',
+//                 'type': 'leaf',
+//                 'text': '水源保护区',
+//                 'icon': 'img/layer/layermini.png',
+//                 'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
+//             }],
+//         },
+//     ]
+//     }
+// ];
 
 var layerData = [
     {   'id': 'root',

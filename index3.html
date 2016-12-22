@@ -10,10 +10,18 @@
     <script src="plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js"></script>
     <script src="plugins/proj4leaflet/proj4-compressed.js"></script>
     <script src="plugins/proj4leaflet/proj4leaflet.js"></script>
+
+    <link rel="stylesheet" href="plugins/draw/leaflet.draw-src.css">
+    <link rel="stylesheet" href="plugins/toolbar/leaflet.toolbar-src.css">
+    <script src="plugins/draw/leaflet.draw-src.js"></script>
+    <!--<script src="plugins/toolbar/leaflet.toolbar-src.js"></script>-->
+
     <!--Load cmn js and css-->
     <link rel="stylesheet" href="css/cmn/utils.css">
     <script src="js/cmn/mapservice.js"></script>
     <script src="js/pages/index.js"></script>
+
+
 
 </head>
 <body >
@@ -24,7 +32,11 @@
     var centerPoint = new L.LatLng(23.125965,114.438019);
     var myStartZoom=3;
     $(document).ready(
-        pageLoadMap("map",mapUrl,centerPoint,myStartZoom,"匡恩技术支持")
+        function () {
+//            pageLoadMap("map", mapUrl, centerPoint, myStartZoom, supportName);
+            pageLoadMap("map", mapUrl, centerPoint, myStartZoom, "匡恩技术支持")
+            toolBarInit();
+        }
     )
 </script>
 </html>

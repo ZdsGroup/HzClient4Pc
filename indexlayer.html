@@ -1,56 +1,85 @@
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8"/>
+	<title>测试</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+	<!-- Load libs and plugins-->
+	<link rel="stylesheet" href="libs/leaflet/leaflet.css"/>
 	<link rel="stylesheet" href="plugins/layer/jstree/themes/default/style.min.css">
-	<script src="libs/jquery/1.11.0/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" href="plugins/layer/iconlayer/iconLayers.css">
 	<!--<script src="libs/jquery/1.7.2/jquery.min.js"></script>-->
+	<script src="libs/jquery/1.11.0/jquery-1.11.0.min.js"></script>
+	<script src="libs/leaflet/leaflet-src.js"></script>
+	<script src="plugins/esri-leaflet/2.0.6/esri-leaflet-debug.js"></script>
+	<script src="plugins/proj4leaflet/proj4-compressed.js"></script>
+	<script src="plugins/proj4leaflet/proj4leaflet.js"></script>
+	<script src="plugins/search/placeholderTypewriter.js"></script>
 	<script src="plugins/layer/jquery.popmenu.js"></script>
 	<script src="plugins/layer/jstree/jstree.js"></script>
+	<script src="plugins/layer/iconlayer/iconLayers.js"></script>
 
-	<!--<script src="plugins/layer/jstree/jstree.min.js"></script>-->
-	<style>
-        .fa{
-            font-size: 40px;
-            line-height: 70px;
-        }
-        .fa-bars{
-            color: red;
-        }
-    </style>
+	<!--Load cmn js and css-->
+	<link rel="stylesheet" href="css/cmn/utils.css">
+	<script src="js/cmn/mapservice.js"></script>
+	<script src="js/pages/index.js"></script>
+
+	<link rel="stylesheet" href="plugins/draw/leaflet.draw-src.css">
+	<script src="plugins/draw/leaflet.draw-src.js"></script>
+	<script src="plugins/toolbar/leaflet.toolbar-src.js"></script>
+	<link rel="stylesheet" href="plugins/toolbar/leaflet.toolbar-src.css">
 
 
 </head>
 <body>
-	<!--<div style="margin-left:400px;margin-top:100px;">-->
-        <div id="layerPanel" style="margin-left:400px;margin-top:100px;">
-            <span class="layer_pop_ctrl">
-				<div>
-					<img style="height:100px;width:100px"/>
-				</div>
-			</span>
-			<div  id="layerContainer"  style="height: 100px;width: 200px;padding-left: 10px;padding-top: 10px;padding-bottom: 10px;padding-right: 10px;">
-
-			</div>
-
+<div id="searchPanel">
+	<form class="wrapper">
+		<input class="inputbox" type="text" name="search" id="search">
+		<input class="submit" type="button" value="Search">
+	</form>
+</div>
+<div id="layerPanel">
+    <span class="layer_pop_ctrl">
+        <div>
+            <img src="img/layer/layer.png"/>
         </div>
-	<!--</div>-->
-
-	<script>
-        $(function(){
-            $('#layerPanel').popmenu({'width': '200px', 'background':'#e67e22','focusColor':'#c0392b','borderRadius':'10px', 'top': '20', 'left': '170', 'border':'3px solid #d2527f'});
-            $('#layerContainer').jstree({'plugins':["wholerow","checkbox"],
-                'core' : {
-                    'data' : [
-                        { "text" : "Root node", "children" : [
-                            { "text" : "Child node 1" },
-                            { "text" : "Child node 2" }
-                        ]}
-                    ]
-                }
-            });
-        })
-    </script>
+    </span>
+	<div id="layerContainer"></div>
+</div>
+<div id="map" class="mapfull"></div>
 </body>
+<script>
+    var mapUrl = "http://gis.huizhou.gov.cn:8399/arcgis/rest/services/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E6%94%BF%E5%8A%A1%E5%BA%95%E5%9B%BE/%E8%A1%8C%E6%94%BF%E5%8A%9E%E5%85%AC%E5%9C%B0%E5%9B%BE%E6%94%BF%E5%8A%A1%E4%BA%8C%E7%89%88DEMV12/MapServer";
+    var centerPoint = new L.LatLng(23.125965, 114.438019);
+    var myStartZoom = 3;
+    var supportName = "技术支持";
+    $(document).ready(
+        function () {
+            pageLoadMap("map", mapUrl, centerPoint, myStartZoom, supportName);
+            searchPanelInit();
+            layerPanelInit();
+            baseMapChangeInit();
+//            toolBarInit();
+            toolBarInitTest();
+        }
+    )
+	function toolBarInitTest() {
+        var MyCustomAction = L.ToolbarAction.extend({
+            options: {
+                toolbarIcon: {
+                    html: '&#9873;',
+                    tooltip: '测试'
+                }
+            },
+
+            addHooks: function () {
+                map.setView(myMap.getMaxZoom().center, 6);
+                myMap.setZoom(myMap.getMinZoom());
+            }
+        });
+
+        new L.Toolbar.Control({
+            actions: [MyCustomAction]
+        }).addTo(myMap);
+    }
+</script>
 </html>
