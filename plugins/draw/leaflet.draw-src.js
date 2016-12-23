@@ -3065,7 +3065,10 @@ L.Control.Draw = L.Control.extend({
 	options: {
 		position: 'topleft',
 		draw: {},
-		edit: false
+		edit: false,
+
+        /**my custome add measure toolbar by zt*/
+		measure: {}
 	},
 
 	// @method initialize(): void
@@ -3099,6 +3102,17 @@ L.Control.Draw = L.Control.extend({
 			// Listen for when toolbar is enabled
 			this._toolbars[L.EditToolbar.TYPE].on('enable', this._toolbarEnabled, this);
 		}
+
+        /**my custome add measure toolbar by zt*/
+        if (L.MeasureToolbar && this.options.measure) {
+            toolbar = new L.MeasureToolbar(this.options.measure);
+
+            this._toolbars[L.MeasureToolbar.TYPE] = toolbar;
+
+            // Listen for when toolbar is enabled
+            this._toolbars[L.MeasureToolbar.TYPE].on('enable', this._toolbarEnabled, this);
+        }
+
 		L.toolbar = this; //set global var for editing the toolbar
 	},
 
@@ -4312,7 +4326,47 @@ L.EditToolbar.Delete = L.Handler.extend({
 	}
 });
 
+/**my custome add measure toolbar by zt*/
+L.MeasureToolbar = L.Toolbar.extend({
+    statics: {
+        TYPE: 'measure'
+    },
 
+    options: {
+        distance: {},
+        area: {},
+    },
+
+    initialize: function (options) {
+        // Ensure that the options are merged correctly since L.extend is only shallow
+        for (var type in this.options) {
+            if (this.options.hasOwnProperty(type)) {
+                if (options[type]) {
+                    options[type] = L.extend({}, this.options[type], options[type]);
+                }
+            }
+        }
+
+        this._toolbarClass = 'leaflet-draw-draw';
+        L.Toolbar.prototype.initialize.call(this, options);
+    },
+
+    getModeHandlers: function (map) {
+        return [
+            {
+                enabled: this.options.distance,
+                handler: new L.Draw.Polyline(map, this.options.distance),
+                title: '距离测量'
+            },
+            {
+                enabled: this.options.area,
+                handler: new L.Draw.Polygon(map, this.options.area),
+                title: '面积测量'
+            }
+        ];
+    },
+
+})
 
 }(window, document));
 //# sourceMappingURL=leaflet.draw-src.map

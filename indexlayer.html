@@ -25,9 +25,16 @@
 
 	<link rel="stylesheet" href="plugins/draw/leaflet.draw-src.css">
 	<script src="plugins/draw/leaflet.draw-src.js"></script>
-	<script src="plugins/toolbar/leaflet.toolbar-src.js"></script>
-	<link rel="stylesheet" href="plugins/toolbar/leaflet.toolbar-src.css">
-
+	<!--<script src="plugins/toolbar/leaflet.toolbar-src.js"></script>-->
+	<!--<link rel="stylesheet" href="plugins/toolbar/leaflet.toolbar-src.css">-->
+	<style>
+		body { margin:0; padding:0; }
+		#map { position: absolute; top:0; bottom:0; right:0; left:0; }
+		.measure-toolbar-bt{
+			height: 20px;
+			width: 20px;
+		}
+	</style>
 
 </head>
 <body>
@@ -63,23 +70,42 @@
         }
     )
 	function toolBarInitTest() {
-        var MyCustomAction = L.ToolbarAction.extend({
-            options: {
-                toolbarIcon: {
-                    html: '&#9873;',
-                    tooltip: '测试'
+//debugger
+        var options = {
+            position: 'topright',
+            draw: false,
+            measure: {
+                polyline: {
+                    shapeOptions: {
+                        color: '#f10215',
+                        weight: 3,
+                        opacity: 0.8
+                    }
+                },
+                polygon: {
+                    drawError: {
+                        color: '#f9ec16', // Color the shape will turn when intersects
+                        message: '不能交叉!' // Message that will show when intersect
+                    },
+                    shapeOptions: {
+                        color: '#f10215',
+                        weight: 3,
+                        opacity: 0.8
+                    }
                 }
-            },
-
-            addHooks: function () {
-                map.setView(myMap.getMaxZoom().center, 6);
-                myMap.setZoom(myMap.getMinZoom());
             }
+
+        };
+        var drawControl = new L.Control.Draw(options);
+        myMap.addControl(drawControl);
+        var editableLayers = new L.FeatureGroup();
+        myMap.addLayer(editableLayers);
+        myMap.on(L.Draw.Event.CREATED, function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+            editableLayers.addLayer(layer);
         });
 
-        new L.Toolbar.Control({
-            actions: [MyCustomAction]
-        }).addTo(myMap);
     }
 </script>
 </html>
