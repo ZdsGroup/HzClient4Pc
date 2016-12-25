@@ -38,8 +38,8 @@ function pageLoadMap(mapPanelId, mapUrl, centerPoint, myStartZoom, supportName) 
     //
 
 
-    myMap = L.map(mapPanelId, mapOptions2);
-    myMap.addLayer(tileLayer2).setView(centerPoint, myStartZoom);
+    myMap = L.map(mapPanelId, mapOptions);
+    myMap.addLayer(tileLayer).setView(centerPoint, myStartZoom);
     myMap.zoomControl.setPosition("topright");
     myMap.attributionControl.setPrefix(false);
 
@@ -296,7 +296,7 @@ function toolBarInit() {
 var layerData = [
     {   'id': 'root',
         'type': 'fold',
-        'text': '服务目录', 'children': [
+        'text': '专题应用服务', 'children': [
         {
             'id': 'id1',
             'type': 'fold',
@@ -313,7 +313,7 @@ var layerData = [
                     'type': 'leaf',
                     'text': '生态严控区',
                     'icon': 'img/layer/layermini.png',
-                    'data': ''
+                    'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/STYKQ/MapServer'
                 }
             ],
         },
@@ -326,7 +326,7 @@ var layerData = [
                     'type': 'leaf',
                     'text': '蓝线规划',
                     'icon': 'img/layer/layermini.png',
-                    'data': ''
+                    'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/LXGH/MapServer'
                 }
             ],
         },
@@ -339,7 +339,7 @@ var layerData = [
                     'type': 'leaf',
                     'text': '城市总体规划',
                     'icon': 'img/layer/layermini.png',
-                    'data': ''
+                    'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92/MapServer'
                 },
                 {
                     'id': 'id32',
@@ -366,14 +366,14 @@ var layerData = [
                     'type': 'leaf',
                     'text': '城市总体规划',
                     'icon': 'img/layer/layermini.png',
-                    'data': ''
+                    'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92/MapServer'
                 },
                 {
                     'id': 'id43',
                     'type': 'leaf',
                     'text': '重点项目',
                     'icon': 'img/layer/layermini.png',
-                    'data': ''
+                    'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE/MapServer'
                 }
             ],
         },

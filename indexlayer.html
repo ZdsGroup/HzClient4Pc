@@ -76,6 +76,10 @@
             draw: false,
             measure: {
                 polyline: {
+//                    icon: {
+//                        iconSize: [20,20],
+//                        iconRetinaUrl: 'img/tool/dismeasure.png',
+//					},
                     shapeOptions: {
                         color: '#f10215',
                         weight: 3,
@@ -96,6 +100,17 @@
             }
 
         };
+        L.drawLocal.draw.handlers.polyline.tooltip.start = '点击开始';
+        L.drawLocal.draw.handlers.polyline.tooltip.cont = '点击继续';
+        L.drawLocal.draw.handlers.polyline.tooltip.end = '双击结束';
+
+        L.drawLocal.draw.handlers.polygon.tooltip.start = '点击开始';
+        L.drawLocal.draw.handlers.polygon.tooltip.cont = '点击继续';
+        L.drawLocal.draw.handlers.polygon.tooltip.end = '双击结束';
+
+        L.drawLocal.draw.toolbar.finish.title = '结束测量';
+        L.drawLocal.draw.toolbar.finish.text = '结束';
+
         var drawControl = new L.Control.Draw(options);
         myMap.addControl(drawControl);
         var editableLayers = new L.FeatureGroup();
@@ -107,5 +122,5 @@
         });
 
     }
-</script>
+    </script>
 </html>

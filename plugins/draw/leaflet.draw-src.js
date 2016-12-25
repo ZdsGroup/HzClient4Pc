@@ -4333,8 +4333,9 @@ L.MeasureToolbar = L.Toolbar.extend({
     },
 
     options: {
-        distance: {},
-        area: {},
+        polyline: {},
+        polygon: {},
+        clearshapes: {}
     },
 
     initialize: function (options) {
@@ -4354,19 +4355,63 @@ L.MeasureToolbar = L.Toolbar.extend({
     getModeHandlers: function (map) {
         return [
             {
-                enabled: this.options.distance,
-                handler: new L.Draw.Polyline(map, this.options.distance),
+                enabled: this.options.polyline,
+                handler: new L.Draw.Polyline(map, this.options.polyline),
                 title: '距离测量'
             },
             {
-                enabled: this.options.area,
-                handler: new L.Draw.Polygon(map, this.options.area),
+                enabled: this.options.polygon,
+                handler: new L.Draw.Polygon(map, this.options.polygon),
                 title: '面积测量'
+            },
+            {
+                enabled: this.options.clearshapes,
+                handler: new L.Draw.Circle(map, this.options.clearshapes),
+                title: '清除结果'
             }
         ];
     },
 
+    getActions: function (handler) {
+        return [{
+            enabled: handler.completeShape,
+            title: L.drawLocal.draw.toolbar.finish.title,
+            text: L.drawLocal.draw.toolbar.finish.text,
+            callback: handler.completeShape,
+            context: handler
+        },];
+    }
 })
+
+// L.Draw.dismeasure = L.Draw.polyline.extend({
+//     statics: {
+//         TYPE: 'dismeasure'
+//     },
+//     options: {
+//         icon: new L.DivIcon({
+//             iconSize: new L.Point(12, 12),
+//             html: '',
+//             className: 'leaflet-div-icon leaflet-editing-icon'
+//         }),
+//         metric: true, // Whether to use the metric measurement system or imperial
+//         feet: false, // When not metric, to use feet instead of yards for display.
+//     },
+//
+//     initialize: function (map, options) {
+//         L.Draw.Polyline.prototype.initialize.call(this, map, options);
+//
+//         // Save the type so super can fire, need to do this as cannot do this.TYPE :(
+//         this.type = L.Draw.Polygon.TYPE;
+//     },
+// })
+
+// L.Draw.areameasure = L.Draw.Polyline.extend({
+//
+//  })
+
+// L.Draw.clearshapes = L.draw.polyline.extend({
+//
+// })
 
 }(window, document));
 //# sourceMappingURL=leaflet.draw-src.map
