@@ -4366,15 +4366,18 @@ L.MeasureToolbar = L.Toolbar.extend({
             },
             {
                 enabled: this.options.clearshapes,
-                handler: new L.Draw.Circle(map, this.options.clearshapes),
+                handler: new L.Draw.Clearshapes(map, this.options.clearshapes),
                 title: '清除结果'
             }
         ];
     },
+
+    getActions: function (handler) {
+        return [];
+	}
 })
 
 L.Draw.Dismeasure = L.Draw.Polyline.extend({
-
     _updateFinishHandler: function () {
         var markerCount = this._markers.length;
         // The last marker should have a click handler to close the polyline
@@ -4386,10 +4389,8 @@ L.Draw.Dismeasure = L.Draw.Polyline.extend({
 })
 
 L.Draw.Areameasure = L.Draw.Polygon.extend({
-
 	_updateFinishHandler: function () {
         var markerCount = this._markers.length;
-
         if (markerCount === 1) {
             this._markers[0].on('click', this._finishShape, this);
         }
@@ -4400,13 +4401,12 @@ L.Draw.Areameasure = L.Draw.Polygon.extend({
 	},
 })
 
-// L.Draw.areameasure = L.Draw.Polyline.extend({
-//
-//  })
-
-// L.Draw.clearshapes = L.draw.polyline.extend({
-//
-// })
+// L.Draw.Clearshapes = L.Draw.Polygon.extend({
+L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
+    options: {
+        featureGroup: null
+    },
+})
 
 }(window, document));
 //# sourceMappingURL=leaflet.draw-src.map
