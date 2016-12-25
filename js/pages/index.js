@@ -214,41 +214,39 @@ function getEsriRestDymLayer(layerAdd) {
 
 //工具条组件初始化
 function toolBarInit() {
-    // var MyCustomMarker = L.Icon.extend({
-    //     options: {
-    //         shadowUrl: null,
-    //         iconAnchor: new L.Point(12, 12),
-    //         iconSize: new L.Point(24, 24),
-    //         iconUrl: 'link/to/image.png'
-    //     }
-    // });
-
     var options = {
         position: 'topright',
-        draw: {
-            polyline: {
+        draw: false,
+        measure: {
+            dismeasure: {
+                showLength: true,
                 shapeOptions: {
                     color: '#f10215',
                     weight: 3,
                     opacity: 0.8
                 }
             },
-            polygon: {
-                drawError: {
-                    color: '#f9ec16', // Color the shape will turn when intersects
-                    message: '不能交叉!' // Message that will show when intersect
-                },
+            areameasure: {
+                showArea: true,
                 shapeOptions: {
                     color: '#f10215',
                     weight: 3,
                     opacity: 0.8
                 }
-            },
-            circle: false, // Turns off this drawing tool
-            rectangle: false,
-            marker: false
+            }
         }
     };
+    L.drawLocal.draw.handlers.polyline.tooltip.start = '点击开始';
+    L.drawLocal.draw.handlers.polyline.tooltip.cont = '点击继续';
+    L.drawLocal.draw.handlers.polyline.tooltip.end = '双击结束';
+
+    L.drawLocal.draw.handlers.polygon.tooltip.start = '点击开始';
+    L.drawLocal.draw.handlers.polygon.tooltip.cont = '点击继续';
+    L.drawLocal.draw.handlers.polygon.tooltip.end = '双击结束';
+
+    L.drawLocal.draw.toolbar.finish.title = '结束测量';
+    L.drawLocal.draw.toolbar.finish.text = '结束';
+
     var drawControl = new L.Control.Draw(options);
     myMap.addControl(drawControl);
     var editableLayers = new L.FeatureGroup();

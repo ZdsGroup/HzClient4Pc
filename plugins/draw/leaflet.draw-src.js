@@ -4333,8 +4333,8 @@ L.MeasureToolbar = L.Toolbar.extend({
     },
 
     options: {
-        polyline: {},
-        polygon: {},
+        dismeasure: {},
+        areameasure: {},
         clearshapes: {}
     },
 
@@ -4355,13 +4355,13 @@ L.MeasureToolbar = L.Toolbar.extend({
     getModeHandlers: function (map) {
         return [
             {
-                enabled: this.options.polyline,
-                handler: new L.Draw.Polyline(map, this.options.polyline),
+                enabled: this.options.dismeasure,
+                handler: new L.Draw.Dismeasure(map, this.options.dismeasure),
                 title: '距离测量'
             },
             {
-                enabled: this.options.polygon,
-                handler: new L.Draw.Polygon(map, this.options.polygon),
+                enabled: this.options.areameasure,
+                handler: new L.Draw.Areameasure(map, this.options.areameasure),
                 title: '面积测量'
             },
             {
@@ -4371,39 +4371,34 @@ L.MeasureToolbar = L.Toolbar.extend({
             }
         ];
     },
-
-    getActions: function (handler) {
-        return [{
-            enabled: handler.completeShape,
-            title: L.drawLocal.draw.toolbar.finish.title,
-            text: L.drawLocal.draw.toolbar.finish.text,
-            callback: handler.completeShape,
-            context: handler
-        },];
-    }
 })
 
-// L.Draw.dismeasure = L.Draw.polyline.extend({
-//     statics: {
-//         TYPE: 'dismeasure'
-//     },
-//     options: {
-//         icon: new L.DivIcon({
-//             iconSize: new L.Point(12, 12),
-//             html: '',
-//             className: 'leaflet-div-icon leaflet-editing-icon'
-//         }),
-//         metric: true, // Whether to use the metric measurement system or imperial
-//         feet: false, // When not metric, to use feet instead of yards for display.
-//     },
-//
-//     initialize: function (map, options) {
-//         L.Draw.Polyline.prototype.initialize.call(this, map, options);
-//
-//         // Save the type so super can fire, need to do this as cannot do this.TYPE :(
-//         this.type = L.Draw.Polygon.TYPE;
-//     },
-// })
+L.Draw.Dismeasure = L.Draw.Polyline.extend({
+
+    _updateFinishHandler: function () {
+        var markerCount = this._markers.length;
+        // The last marker should have a click handler to close the polyline
+        if (markerCount > 1) {
+            this._markers[markerCount - 1].on('click', this._finishShape, this);
+            this._markers[markerCount - 1].on('dblclick', this._finishShape, this);
+        }
+    },
+})
+
+L.Draw.Areameasure = L.Draw.Polygon.extend({
+
+	_updateFinishHandler: function () {
+        var markerCount = this._markers.length;
+
+        if (markerCount === 1) {
+            this._markers[0].on('click', this._finishShape, this);
+        }
+        // Add and update the double click handler
+        if (markerCount > 2) {
+            this._markers[markerCount - 1].on('dblclick', this._finishShape, this);
+        }
+	},
+})
 
 // L.Draw.areameasure = L.Draw.Polyline.extend({
 //
