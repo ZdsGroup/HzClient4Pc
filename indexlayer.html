@@ -70,19 +70,7 @@
     )
 	function toolBarInitTest() {
 //debugger
-        L.drawLocal.draw.handlers.polyline.tooltip.start = '点击开始';
-        L.drawLocal.draw.handlers.polyline.tooltip.cont = '点击继续';
-        L.drawLocal.draw.handlers.polyline.tooltip.end = '双击结束';
-
-        L.drawLocal.draw.handlers.polygon.tooltip.start = '点击开始';
-        L.drawLocal.draw.handlers.polygon.tooltip.cont = '点击继续';
-        L.drawLocal.draw.handlers.polygon.tooltip.end = '双击结束';
-
-        L.drawLocal.draw.toolbar.finish.title = '结束测量';
-        L.drawLocal.draw.toolbar.finish.text = '结束';
-
-        L.drawLocal.edit.handlers.remove.tooltip.text = '点击对象删除';
-
+        changeDrawLocalMsg();
         var editableLayers = new L.FeatureGroup();
         myMap.addLayer(editableLayers);
         var options = {
@@ -115,7 +103,20 @@
                 layer = e.layer;
             editableLayers.addLayer(layer);
         });
+    }
+    function changeDrawLocalMsg() {
+        L.drawLocal.draw.handlers.polyline.tooltip.start = '点击开始';
+        L.drawLocal.draw.handlers.polyline.tooltip.cont = '点击继续';
+        L.drawLocal.draw.handlers.polyline.tooltip.end = '双击结束';
 
+        L.drawLocal.draw.handlers.polygon.tooltip.start = '点击开始';
+        L.drawLocal.draw.handlers.polygon.tooltip.cont = '点击继续';
+        L.drawLocal.draw.handlers.polygon.tooltip.end = '双击结束';
+
+        L.drawLocal.draw.toolbar.finish.title = '结束测量';
+        L.drawLocal.draw.toolbar.finish.text = '结束';
+
+        L.drawLocal.edit.handlers.remove.tooltip.text = '点击对象删除';
     }
     </script>
 </html>

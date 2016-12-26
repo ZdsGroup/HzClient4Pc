@@ -214,12 +214,14 @@ function getEsriRestDymLayer(layerAdd) {
 
 //工具条组件初始化
 function toolBarInit() {
+    changeDrawLocalMsg();
+    var editableLayers = new L.FeatureGroup();
+    myMap.addLayer(editableLayers);
     var options = {
         position: 'topright',
         draw: false,
         measure: {
             dismeasure: {
-                showLength: true,
                 shapeOptions: {
                     color: '#f10215',
                     weight: 3,
@@ -227,15 +229,27 @@ function toolBarInit() {
                 }
             },
             areameasure: {
-                showArea: true,
                 shapeOptions: {
                     color: '#f10215',
                     weight: 3,
                     opacity: 0.8
                 }
+            },
+            clearshapes: {
+                featureGroup: editableLayers
             }
         }
     };
+    var drawControl = new L.Control.Draw(options);
+    myMap.addControl(drawControl);
+    myMap.on(L.Draw.Event.CREATED, function (e) {
+        var type = e.layerType,
+            layer = e.layer;
+        editableLayers.addLayer(layer);
+    });
+}
+
+function changeDrawLocalMsg() {
     L.drawLocal.draw.handlers.polyline.tooltip.start = '点击开始';
     L.drawLocal.draw.handlers.polyline.tooltip.cont = '点击继续';
     L.drawLocal.draw.handlers.polyline.tooltip.end = '双击结束';
@@ -247,15 +261,7 @@ function toolBarInit() {
     L.drawLocal.draw.toolbar.finish.title = '结束测量';
     L.drawLocal.draw.toolbar.finish.text = '结束';
 
-    var drawControl = new L.Control.Draw(options);
-    myMap.addControl(drawControl);
-    var editableLayers = new L.FeatureGroup();
-    myMap.addLayer(editableLayers);
-    myMap.on(L.Draw.Event.CREATED, function (e) {
-        var type = e.layerType,
-            layer = e.layer;
-        editableLayers.addLayer(layer);
-    });
+    L.drawLocal.edit.handlers.remove.tooltip.text = '点击对象删除';
 }
 
 //all temp date
