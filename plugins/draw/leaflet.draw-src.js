@@ -4348,7 +4348,7 @@ L.MeasureToolbar = L.Toolbar.extend({
             }
         }
 
-        this._toolbarClass = 'leaflet-draw-draw';
+        this._toolbarClass = 'leaflet-draw-measure';
         L.Toolbar.prototype.initialize.call(this, options);
     },
 
@@ -4385,7 +4385,7 @@ L.Draw.Dismeasure = L.Draw.Polyline.extend({
             this._markers[markerCount - 1].on('click', this._finishShape, this);
             this._markers[markerCount - 1].on('dblclick', this._finishShape, this);
         }
-    },
+    }
 })
 
 L.Draw.Areameasure = L.Draw.Polygon.extend({
