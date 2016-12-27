@@ -250,18 +250,18 @@ function toolBarInit() {
 }
 
 function changeDrawLocalMsg() {
-    L.drawLocal.draw.handlers.polyline.tooltip.start = '点击开始';
-    L.drawLocal.draw.handlers.polyline.tooltip.cont = '点击继续';
-    L.drawLocal.draw.handlers.polyline.tooltip.end = '双击结束';
+    L.drawLocal.draw.handlers.polyline.tooltip.start = '单击确定起点';
+    L.drawLocal.draw.handlers.polyline.tooltip.cont = '单击确定地点';
+    L.drawLocal.draw.handlers.polyline.tooltip.end = '单击确定地点，双击结束';
 
-    L.drawLocal.draw.handlers.polygon.tooltip.start = '点击开始';
-    L.drawLocal.draw.handlers.polygon.tooltip.cont = '点击继续';
-    L.drawLocal.draw.handlers.polygon.tooltip.end = '双击结束';
+    L.drawLocal.draw.handlers.polygon.tooltip.start = '单击确定起点';
+    L.drawLocal.draw.handlers.polygon.tooltip.cont = '单击确定地点';
+    L.drawLocal.draw.handlers.polygon.tooltip.end = '单击确定地点，双击结束';
 
     L.drawLocal.draw.toolbar.finish.title = '结束测量';
     L.drawLocal.draw.toolbar.finish.text = '结束';
 
-    L.drawLocal.edit.handlers.remove.tooltip.text = '点击对象删除';
+    L.drawLocal.edit.handlers.remove.tooltip.text = '单击对象删除';
 }
 
 //all temp date
