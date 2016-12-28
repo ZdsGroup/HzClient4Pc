@@ -35,6 +35,12 @@
     /*background-image: linear-gradient(transparent, transparent), url('images/spritesheet.svg');*/
 /*}*/
 
+.leaflet-draw a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+/*custom style by zt*/
 .leaflet-draw-toolbar .leaflet-draw-measure-polyline {
     background-image: url('../../img/tool/dismeasure.png');
 }
@@ -44,11 +50,18 @@
 .leaflet-draw-toolbar .leaflet-draw-measure-remove {
     background-image: url('../../img/tool/remove.png');
 }
-
-.leaflet-draw a {
-    display: block;
+.dismeasure-marker {
+    font-size: 9px;
+    border: 1px solid #f10215;
+    border-radius: 10px;
     text-align: center;
-    text-decoration: none;
+    background: #fff;
+}
+.dismeasure-marker-tooltip {
+    border: 1px solid #919187;
+    color: #f10215;
+    background: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
 }
 
 /* ================================================================== */
@@ -234,12 +247,12 @@
 }
 
 .leaflet-draw-tooltip {
-    background: rgb(54, 54, 54);
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid transparent;
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #919187;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-    color: #ffffff;
+    color: black;
     font: 12px/18px "Helvetica Neue", Arial, Helvetica, sans-serif;
     margin-left: 20px;
     margin-top: -21px;
@@ -276,7 +289,7 @@
 }
 
 .leaflet-draw-tooltip-subtext {
-    color: #f9ec16;
+    color: red;
     font-weight: bold;
 }
 

@@ -545,7 +545,9 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 				.on('mousemove', this._onMouseMove, this)
 				.on('zoomlevelschange', this._onZoomEnd, this)
 				.on('touchstart', this._onTouch, this)
-				.on('zoomend', this._onZoomEnd, this);
+				.on('zoomend', this._onZoomEnd, this)
+				.on('dblclick', this._finishShape, this);
+			this._map.doubleClickZoom.disable();
 		}
 	},
 
@@ -583,7 +585,9 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			.off('zoomlevelschange', this._onZoomEnd, this)
 			.off('zoomend', this._onZoomEnd, this)
 			.off('touchstart', this._onTouch, this)
-			.off('click', this._onTouch, this);
+			.off('click', this._onTouch, this)
+        	.off('dblclick', this._finishShape, this);
+        this._map.doubleClickZoom.enable();
 	},
 
 	// @method deleteLastVertex(): void
@@ -623,6 +627,8 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		}
 
 		this._markers.push(this._createMarker(latlng));
+
+        // console.debug(this._markers.length);
 
 		this._poly.addLatLng(latlng);
 
@@ -2808,7 +2814,8 @@ L.GeometryUtil = L.extend(L.GeometryUtil || {}, {
 
 		if (isMetric) {
 			if (area >= 10000) {
-				areaStr = (area * 0.0001).toFixed(2) + ' ha';
+				// areaStr = (area * 0.0001).toFixed(2) + ' ha';
+                areaStr = (area * 0.0001).toFixed(2) + ' km&sup2';
 			} else {
 				areaStr = area.toFixed(2) + ' m&sup2;';
 			}
@@ -4378,27 +4385,89 @@ L.MeasureToolbar = L.Toolbar.extend({
 })
 
 L.Draw.Dismeasure = L.Draw.Polyline.extend({
-    _updateFinishHandler: function () {
-        var markerCount = this._markers.length;
-        // The last marker should have a click handler to close the polyline
-        if (markerCount > 1) {
-            this._markers[markerCount - 1].on('click', this._finishShape, this);
-            this._markers[markerCount - 1].on('dblclick', this._finishShape, this);
-        }
+    options: {
+        circlemark: {
+            radius: 5,
+            color: '#f10215',
+            weight: 1,
+            fill: true,
+            fillColor: '#ffffff',
+            fillOpacity: 1
+		}
+    },
+    _fireCreatedEvent: function () {
+        var poly = new this.Poly(this._poly.getLatLngs(), this.options.shapeOptions);
+        L.Draw.Feature.prototype._fireCreatedEvent.call(this, poly);
+        this._addMeasureMarkers();
+    },
+    _addMeasureMarkers: function () {
+    	var markers = this._markers;
+    	this._measureMarkersLayerGroup = new L.layerGroup();
+    	for (var i = 0; i < markers.length; i = i+2){
+    		// console.debug(markers[i].getLatLng());
+			var disMarker = new L.circleMarker(markers[i].getLatLng(), this.options.circlemark);
+			var toolTipTxt = '';
+			if (i == 0){
+                toolTipTxt = '起点';
+			}else if(i == markers.length - 1){
+                toolTipTxt = '总长: ' + this._getMeasurementString();
+			}
+			if (toolTipTxt != ''){
+                disMarker.bindTooltip(toolTipTxt,{permanent: true, className: 'dismeasure-marker-tooltip'});
+            }
+            this._measureMarkersLayerGroup.addLayer(disMarker);
+		}
+        this._map.addLayer(this._measureMarkersLayerGroup);
+    },
+
+    _createMarker: function (latlng) {
+        var disMarker = new L.circleMarker(latlng, this.options.circlemark);
+        this._markerGroup.addLayer(disMarker);
+        return disMarker;
     }
 })
 
 L.Draw.Areameasure = L.Draw.Polygon.extend({
-	_updateFinishHandler: function () {
-        var markerCount = this._markers.length;
-        if (markerCount === 1) {
-            this._markers[0].on('click', this._finishShape, this);
+    options: {
+        showArea: true,
+        allowIntersection: false,
+        metric: true,
+        circlemark: {
+            radius: 5,
+            color: '#f10215',
+            weight: 1,
+            fill: true,
+            fillColor: '#ffffff',
+            fillOpacity: 1
         }
-        // Add and update the double click handler
-        if (markerCount > 2) {
-            this._markers[markerCount - 1].on('dblclick', this._finishShape, this);
+    },
+    _fireCreatedEvent: function () {
+        var poly = new this.Poly(this._poly.getLatLngs(), this.options.shapeOptions);
+        L.Draw.Feature.prototype._fireCreatedEvent.call(this, poly);
+        this._addMeasureMarkers();
+    },
+
+    _addMeasureMarkers: function () {
+        var markers = this._markers;
+        this._measureMarkersLayerGroup = new L.layerGroup();
+        for (var i = 0; i < markers.length; i++){
+            var disMarker = new L.circleMarker(markers[i].getLatLng(), this.options.circlemark);
+            var toolTipTxt = '';
+           	if(i == markers.length - 1){
+                toolTipTxt = '总面积: ' + this._getMeasurementString();
+            }
+            if (toolTipTxt != ''){
+                disMarker.bindTooltip(toolTipTxt,{permanent: true, className: 'dismeasure-marker-tooltip'});
+            }
+            this._measureMarkersLayerGroup.addLayer(disMarker);
         }
-	},
+        this._map.addLayer(this._measureMarkersLayerGroup);
+    },
+    _createMarker: function (latlng) {
+        var disMarker = new L.circleMarker(latlng, this.options.circlemark);
+        this._markerGroup.addLayer(disMarker);
+        return disMarker;
+    }
 })
 
 // L.Draw.Clearshapes = L.Draw.Polygon.extend({
