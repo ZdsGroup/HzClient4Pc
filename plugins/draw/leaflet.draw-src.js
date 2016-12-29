@@ -544,7 +544,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 				.on('mouseup', this._onMouseUp, this) // Necessary for 0.7 compatibility
 				.on('mousemove', this._onMouseMove, this)
 				.on('zoomlevelschange', this._onZoomEnd, this)
-				.on('touchstart', this._onTouch, this)
+				// .on('touchstart', this._onTouch, this)
 				.on('zoomend', this._onZoomEnd, this)
 				.on('dblclick', this._finishShape, this);
 			this._map.doubleClickZoom.disable();
@@ -561,7 +561,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		this._cleanUpShape();
 
 		// remove markers from map
-		this._map.removeLayer(this._markerGroup);
+		// this._map.removeLayer(this._markerGroup);
 		delete this._markerGroup;
 		delete this._markers;
 
@@ -584,7 +584,7 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 			.off('mousemove', this._onMouseMove, this)
 			.off('zoomlevelschange', this._onZoomEnd, this)
 			.off('zoomend', this._onZoomEnd, this)
-			.off('touchstart', this._onTouch, this)
+			// .off('touchstart', this._onTouch, this)
 			.off('click', this._onTouch, this)
         	.off('dblclick', this._finishShape, this);
         this._map.doubleClickZoom.enable();
@@ -628,8 +628,6 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 
 		this._markers.push(this._createMarker(latlng));
 
-        // console.debug(this._markers.length);
-
 		this._poly.addLatLng(latlng);
 
 		if (this._poly.getLatLngs().length === 2) {
@@ -645,7 +643,6 @@ L.Draw.Polyline = L.Draw.Feature.extend({
 		if (this._markers.length <= 1) {
 			return;
 		}
-
 		this._fireCreatedEvent();
 		this.disable();
 
@@ -2815,9 +2812,9 @@ L.GeometryUtil = L.extend(L.GeometryUtil || {}, {
 		if (isMetric) {
 			if (area >= 10000) {
 				// areaStr = (area * 0.0001).toFixed(2) + ' ha';
-                areaStr = (area * 0.0001).toFixed(2) + ' km&sup2';
+                areaStr = (area * 0.000001).toFixed(2) + ' 平方公里';
 			} else {
-				areaStr = area.toFixed(2) + ' m&sup2;';
+				areaStr = area.toFixed(2) + ' 平方米;';
 			}
 		} else {
 			area /= 0.836127; // Square yards in 1 meter
@@ -2862,9 +2859,9 @@ L.GeometryUtil = L.extend(L.GeometryUtil || {}, {
 		case 'metric':
 			// show metres when distance is < 1km, then show km
 			if (distance > 1000) {
-				distanceStr = (distance / 1000).toFixed(2) + ' km';
+				distanceStr = (distance / 1000).toFixed(2) + ' 公里';
 			} else {
-				distanceStr = Math.ceil(distance) + ' m';
+				distanceStr = Math.ceil(distance) + ' 米';
 			}
 			break;
 		case 'feet':
@@ -4395,33 +4392,30 @@ L.Draw.Dismeasure = L.Draw.Polyline.extend({
             fillOpacity: 1
 		}
     },
+
     _fireCreatedEvent: function () {
         var poly = new this.Poly(this._poly.getLatLngs(), this.options.shapeOptions);
         L.Draw.Feature.prototype._fireCreatedEvent.call(this, poly);
-        this._addMeasureMarkers();
-    },
-    _addMeasureMarkers: function () {
-    	var markers = this._markers;
-    	this._measureMarkersLayerGroup = new L.layerGroup();
-    	for (var i = 0; i < markers.length; i = i+2){
-    		// console.debug(markers[i].getLatLng());
-			var disMarker = new L.circleMarker(markers[i].getLatLng(), this.options.circlemark);
-			var toolTipTxt = '';
-			if (i == 0){
-                toolTipTxt = '起点';
-			}else if(i == markers.length - 1){
-                toolTipTxt = '总长: ' + this._getMeasurementString();
-			}
-			if (toolTipTxt != ''){
-                disMarker.bindTooltip(toolTipTxt,{permanent: true, className: 'dismeasure-marker-tooltip'});
-            }
-            this._measureMarkersLayerGroup.addLayer(disMarker);
-		}
-        this._map.addLayer(this._measureMarkersLayerGroup);
+
+        var lastMarker = this._markers[this._markers.length - 1];
+        var toolTipTxt = '总长: ' + this._getMeasurementString();
+        lastMarker.unbindTooltip();
+        lastMarker.bindTooltip(toolTipTxt,{permanent: true, className: 'dismeasure-marker-tooltip'});
+        this._markerGroup.setZIndex(50000);
     },
 
     _createMarker: function (latlng) {
         var disMarker = new L.circleMarker(latlng, this.options.circlemark);
+        var markers = this._markers;
+		var toolTipTxt = '';
+		if (this._markers.length == 0){
+			toolTipTxt = '起点';
+		}else {
+			toolTipTxt = this._getMeasurementString();
+		}
+		if (toolTipTxt != ''){
+			disMarker.bindTooltip(toolTipTxt,{permanent: true, className: 'dismeasure-marker-tooltip'});
+		}
         this._markerGroup.addLayer(disMarker);
         return disMarker;
     }
@@ -4444,25 +4438,13 @@ L.Draw.Areameasure = L.Draw.Polygon.extend({
     _fireCreatedEvent: function () {
         var poly = new this.Poly(this._poly.getLatLngs(), this.options.shapeOptions);
         L.Draw.Feature.prototype._fireCreatedEvent.call(this, poly);
-        this._addMeasureMarkers();
+
+        var lastMarker = this._markers[this._markers.length - 1];
+        var toolTipTxt = '总面积: ' + this._getMeasurementString();
+        lastMarker.unbindTooltip();
+        lastMarker.bindTooltip(toolTipTxt,{permanent: true, className: 'dismeasure-marker-tooltip'});
     },
 
-    _addMeasureMarkers: function () {
-        var markers = this._markers;
-        this._measureMarkersLayerGroup = new L.layerGroup();
-        for (var i = 0; i < markers.length; i++){
-            var disMarker = new L.circleMarker(markers[i].getLatLng(), this.options.circlemark);
-            var toolTipTxt = '';
-           	if(i == markers.length - 1){
-                toolTipTxt = '总面积: ' + this._getMeasurementString();
-            }
-            if (toolTipTxt != ''){
-                disMarker.bindTooltip(toolTipTxt,{permanent: true, className: 'dismeasure-marker-tooltip'});
-            }
-            this._measureMarkersLayerGroup.addLayer(disMarker);
-        }
-        this._map.addLayer(this._measureMarkersLayerGroup);
-    },
     _createMarker: function (latlng) {
         var disMarker = new L.circleMarker(latlng, this.options.circlemark);
         this._markerGroup.addLayer(disMarker);
