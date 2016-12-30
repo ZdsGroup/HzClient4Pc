@@ -4318,6 +4318,8 @@ L.EditToolbar.Delete = L.Handler.extend({
 
 		this._deletedLayers.addLayer(layer);
 
+		this._deleteMeasureLayerMarkers(layer);
+
 		layer.fire('deleted');
 	},
 
@@ -4457,6 +4459,36 @@ L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
     options: {
         featureGroup: null
     },
+
+    _deleteMeasureLayerMarkers: function (layer) {
+		if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
+            var xys = null;
+			if (layer instanceof L.Polygon) {
+                xys = layer.getLatLngs()[0];
+			}else {
+                xys = layer.getLatLngs();
+			}
+			var xysCount = xys.length;
+			var delLayersT = [];
+            this._map.eachLayer(function (layerT,thisContext) {
+                // debugger
+                if (layerT instanceof L.CircleMarker) {
+                    var xy = layerT.getLatLng();
+                	for (var i = 0; i < xysCount; i++) {
+                        if (xy.lat == xys[i].lat && xy.lng == xys[i].lng) {
+                            delLayersT.push(layerT);
+                            break;
+                        }
+					}
+                }
+            })
+			for (var i = 0; i < delLayersT.length; i++) {
+            	// this._deletedLayers.addLayer(delLayersT[i]);
+            	this._map.removeLayer(delLayersT[i]);
+			}
+		}
+		this.save();
+    }
 })
 
 }(window, document));
