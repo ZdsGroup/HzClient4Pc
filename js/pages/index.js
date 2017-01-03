@@ -66,7 +66,13 @@ function searchPanelInit() {
         "您想知道什么信息?",
         "检索从这里开始",
     ];
-    $('#search').placeholderTypewriter({text: searchText});
+    $('#searchTxt').placeholderTypewriter({text: searchText});
+    $('#searchBt').on('click', queryLayerObjs);
+}
+function queryLayerObjs() {
+    var keyWords = $('#searchTxt')[0].value.trim();
+    if (keyWords != '') {
+    }
 }
 
 //图层组件初始化

@@ -4475,7 +4475,6 @@ L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
 			var xysCount = xys.length;
 			var delLayersT = [];
             this._map.eachLayer(function (layerT,thisContext) {
-                // debugger
                 if (layerT instanceof L.CircleMarker) {
                     var xy = layerT.getLatLng();
                 	for (var i = 0; i < xysCount; i++) {
@@ -4495,7 +4494,6 @@ L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
     },
 
     _cancelDelete: function (e) {
-    	debugger
         if (e.keyCode === 27) {
             this.disable();
         }
