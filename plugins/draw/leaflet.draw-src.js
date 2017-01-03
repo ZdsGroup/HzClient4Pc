@@ -4211,6 +4211,8 @@ L.EditToolbar.Delete = L.Handler.extend({
 
 		// Save the type so super can fire, need to do this as cannot do this.TYPE :(
 		this.type = L.EditToolbar.Delete.TYPE;
+
+        this._container = map._container;
 	},
 
 	// @method enable(): void
@@ -4263,6 +4265,8 @@ L.EditToolbar.Delete = L.Handler.extend({
 			this._tooltip.updateContent({ text: L.drawLocal.edit.handlers.remove.tooltip.text });
 
 			this._map.on('mousemove', this._onMouseMove, this);
+
+            L.DomEvent.on(this._container, 'keyup', this._cancelDelete, this);
 		}
 	},
 
@@ -4488,6 +4492,13 @@ L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
 			}
 		}
 		this.save();
+    },
+
+    _cancelDelete: function (e) {
+    	debugger
+        if (e.keyCode === 27) {
+            this.disable();
+        }
     }
 })
 

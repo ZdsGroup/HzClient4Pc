@@ -261,7 +261,7 @@ function changeDrawLocalMsg() {
     L.drawLocal.draw.toolbar.finish.title = '结束测量';
     L.drawLocal.draw.toolbar.finish.text = '结束';
 
-    L.drawLocal.edit.handlers.remove.tooltip.text = '单击对象删除';
+    L.drawLocal.edit.handlers.remove.tooltip.text = '单击对象删除，ESC键结束';
 }
 
 //all temp date
