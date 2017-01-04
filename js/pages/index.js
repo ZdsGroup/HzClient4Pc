@@ -71,7 +71,36 @@ function searchPanelInit() {
 }
 function queryLayerObjs() {
     var keyWords = $('#searchTxt')[0].value.trim();
-    if (keyWords != '') {
+    var layerIds = getSelOverLayerIds();
+    if (keyWords != '' && layerIds.length > 0) {
+        //todo ajax request by keywords and layersid
+        var results = resultsData;
+        showQueryResults(results);
+    }
+}
+function getSelOverLayerIds() {
+    var ids = [];
+    var layers = getLayersByType(overLayerType);
+    for (var i = 0; i < layers.length; i++){
+        ids.push(layers[i].id);
+    }
+    return ids;
+}
+function showQueryResults(results) {
+    if (results.length > 0){
+        var count = results.length;
+        var resultsMarkers = new L.layerGroup();
+        for (var i = 0; i < count; i++){
+            var lat = results[i].x;
+            var lng = results[i].y;
+            var msg = results[i].msg;
+            var name = results[i].name;
+            if(lat != '' && lng != ''){
+                var mark = new L.marker([lat, lng]).bindPopup(msg).bindTooltip(name);
+                resultsMarkers.addLayer(mark);
+            }
+        }
+        myMap.addLayer(resultsMarkers);
     }
 }
 
@@ -402,4 +431,35 @@ var layerData = [
         }
     ]
     }
+];
+
+var resultsData = [
+    {
+        id: '11',
+        name: '名称1',
+        x: '22.908465647514895',
+        y: '114.65441977583869',
+        msg: '测试信息1'
+    },
+    {
+        id: '12',
+        name: '名称2',
+        x: '22.96459401518446',
+        y: '114.78884548788918',
+        msg: '测试信息2'
+    },
+    {
+        id: '13',
+        name: '名称3',
+        x: '23.040177376450007',
+        y: '114.71958857042789',
+        msg: '测试信息3'
+    },
+    {
+        id: '14',
+        name: '名称4',
+        x: '23.001352462861067',
+        y: '114.57422115272773',
+        msg: '测试信息4'
+    },
 ];
