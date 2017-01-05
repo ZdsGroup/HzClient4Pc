@@ -76,6 +76,13 @@ function queryLayerObjs() {
         //todo ajax request by keywords and layersid
         var results = resultsData;
         showQueryResults(results);
+    }else {
+        $("body").overhang({
+            type: "warn",
+            message: "请输入关键字并且选择叠加的图层!",
+            duration: 5,
+            closeConfirm: false
+        });
     }
 }
 function getSelOverLayerIds() {
