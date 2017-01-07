@@ -4218,6 +4218,7 @@ L.EditToolbar.Delete = L.Handler.extend({
 	// @method enable(): void
 	// Enable the delete toolbar
 	enable: function () {
+		this._removeAllMarkersLayer();
 		if (this._enabled || !this._hasAvailableLayers()) {
 			return;
 		}
@@ -4474,7 +4475,7 @@ L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
 			}
 			var xysCount = xys.length;
 			var delLayersT = [];
-            this._map.eachLayer(function (layerT,thisContext) {
+            this._map.eachLayer(function (layerT, thisContext) {
                 if (layerT instanceof L.CircleMarker) {
                     var xy = layerT.getLatLng();
                 	for (var i = 0; i < xysCount; i++) {
@@ -4486,11 +4487,19 @@ L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
                 }
             })
 			for (var i = 0; i < delLayersT.length; i++) {
-            	// this._deletedLayers.addLayer(delLayersT[i]);
             	this._map.removeLayer(delLayersT[i]);
 			}
 		}
+
 		this.save();
+    },
+
+    _removeAllMarkersLayer:function () {
+        this._map.eachLayer(function (layerT, thisContext) {
+            if (layerT instanceof L.Marker) {
+                myMap.removeLayer(layerT);
+            }
+        })
     },
 
     _cancelDelete: function (e) {
