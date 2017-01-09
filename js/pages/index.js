@@ -4,10 +4,12 @@
 
 var myMap = null;
 var myLayers = [];
+var myQueryLayerGroup = new L.layerGroup();
 // '1': base map layer
 // 2': over layer
 var baseLayerType = '1';
 var overLayerType = '2';
+
 //地图初始化
 function pageLoadMap(mapPanelId, mapUrl, centerPoint, myStartZoom, supportName) {
     esriTileLayerXian80.setMapUrl(mapUrl);
@@ -80,7 +82,7 @@ function queryLayerObjs() {
         L.esri.Support.cors = false;
         L.esri.query({
             url: queryUrl
-        }).where("OBJECTID<5").run(function (errMsg, queryResults, response) {
+        }).where('OBJECTID<20').run(function (errMsg, queryResults, response) {
             if(!errMsg){
                 showQueryResults(queryResults, response);
             }else {
@@ -101,30 +103,53 @@ function getSelOverLayerIds() {
 }
 function showQueryResults(results, resContext) {
     if (results.features != null && results.features.length > 0) {
-        var count = results.features.length;
-        for (var i = 0; i < count; i++) {
+        myQueryLayerGroup = new L.layerGroup();
+        var queryR = L.geoJSON(results, {
+            // pointToLayer: function (geoJsonPoint, latlng) {
+            //     //config here if has point feature
+            // },
+            style: function (feature) {
+                return {color: 'red'};
+            },
+            onEachFeature: function (jsonfeature, layer) {
 
-        }
-
-        var resultsMarkers = new L.layerGroup();
-        for (var i = 0; i < count; i++){
-            var lat = results[i].x;
-            var lng = results[i].y;
-            var msg = results[i].msg;
-            var name = results[i].name;
-            if(lat != '' && lng != ''){
-                var mark = new L.marker([lat, lng]).bindPopup(msg).bindTooltip(name);
-                resultsMarkers.addLayer(mark);
+                // L.geoJSON(feature).bindPopup(msg).bindTooltip(name);
+                layer.on('click', function (e) {
+                    debugger;
+                    var name = 'OBJECTID: ' + e.target.feature.properties.OBJECTID;
+                    var msg = 'OBJECTID: ' + e.target.feature.properties.OBJECTID + '</br>' +
+                        'SHAPE_LENG: ' + e.target.feature.properties.SHAPE_LENG ;
+                    myQueryLayerGroup.clearLayers();
+                    var mark = new L.marker(e.latlng).bindPopup(msg).bindTooltip(name).openTooltip();
+                    myQueryLayerGroup.addLayer(mark);
+                })
             }
-        }
-        myMap.addLayer(resultsMarkers);
+        });
+        myMap.addLayer(queryR);
+        myMap.fitBounds(queryR.getBounds());
+        myMap.addLayer(myQueryLayerGroup);
+
+        // var resultsMarkers = new L.layerGroup();
+        // for (var i = 0; i < count; i++){
+        //     var lat = results[i].x;
+        //     var lng = results[i].y;
+        //     var msg = results[i].msg;
+        //     var name = results[i].name;
+        //     if(lat != '' && lng != ''){
+        //         var mark = new L.marker([lat, lng]).bindPopup(msg).bindTooltip(name);
+        //         resultsMarkers.addLayer(mark);
+        //     }
+        // }
+        // myMap.addLayer(resultsMarkers);
+    }else {
+        messageShow('warn', '没有查询到结果')
     }
 }
 function messageShow(msgType, msginfo) {
     $("body").overhang({
         type: msgType,  //"warn"
         message: msginfo,
-        duration: 5,
+        duration: 3,
         closeConfirm: false
     });
 }
