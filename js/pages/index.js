@@ -74,15 +74,21 @@ function queryLayerObjs() {
     var layerIds = getSelOverLayerIds();
     if (keyWords != '' && layerIds.length > 0) {
         //todo ajax request by keywords and layersid
-        var results = resultsData;
-        showQueryResults(results);
-    }else {
-        $("body").overhang({
-            type: "warn",
-            message: "请输入关键字并且选择叠加的图层!",
-            duration: 5,
-            closeConfirm: false
+        // var results = resultsData;
+        // userkey:19f09930757f2caf935eed597a70811cee748db3
+        var queryUrl = 'http://220.231.19.115:2498/bc94451a4afcaaecc31d72b37344ec78b6b34132/ArcGIS/MapService/Catalog/SDE.BLUE.gis';
+        L.esri.Support.cors = false;
+        L.esri.query({
+            url: queryUrl
+        }).where("OBJECTID<5").run(function (errMsg, queryResults, response) {
+            if(!errMsg){
+                showQueryResults(queryResults, response);
+            }else {
+                messageShow('warn', errMsg.message);
+            }
         });
+    }else {
+        messageShow('warn', '请输入关键字并且选择叠加的图层!');
     }
 }
 function getSelOverLayerIds() {
@@ -93,9 +99,13 @@ function getSelOverLayerIds() {
     }
     return ids;
 }
-function showQueryResults(results) {
-    if (results.length > 0){
-        var count = results.length;
+function showQueryResults(results, resContext) {
+    if (results.features != null && results.features.length > 0) {
+        var count = results.features.length;
+        for (var i = 0; i < count; i++) {
+
+        }
+
         var resultsMarkers = new L.layerGroup();
         for (var i = 0; i < count; i++){
             var lat = results[i].x;
@@ -109,6 +119,14 @@ function showQueryResults(results) {
         }
         myMap.addLayer(resultsMarkers);
     }
+}
+function messageShow(msgType, msginfo) {
+    $("body").overhang({
+        type: msgType,  //"warn"
+        message: msginfo,
+        duration: 5,
+        closeConfirm: false
+    });
 }
 
 //图层组件初始化
