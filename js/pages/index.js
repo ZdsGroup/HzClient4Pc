@@ -6,8 +6,9 @@ var myMap = null;
 var myLayers = [];
 var myQueryLayerGroup = new L.layerGroup();
 
-// userkey-gxuser:19f09930757f2caf935eed597a70811cee748db3
-var queryUrlTemplate = 'http://220.231.19.115:2498/19f09930757f2caf935eed597a70811cee748db3/ArcGIS/MapService/Catalog/{0}.gis';
+// userkey-gxuser:
+var userkey = '19f09930757f2caf935eed597a70811cee748db3';
+var queryUrlTemplate = 'http://220.231.19.115:2498/{0}/ArcGIS/MapService/Catalog/{1}.gis';
 // '1': base map layer
 // 2': over layer
 var baseLayerType = '1';
@@ -86,7 +87,7 @@ function queryLayerObjs() {
                 continue;
             }
             queryEnable = true;
-            var queryUrl = stringFormat(queryUrlTemplate, layerIds[i]);
+            var queryUrl = stringFormat(queryUrlTemplate, userkey, layerIds[i]);
             L.esri.query({
                 url: queryUrl
             }).where('OBJECTID<20').run(function (errMsg, queryResults, response) {
