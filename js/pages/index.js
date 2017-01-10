@@ -5,6 +5,9 @@
 var myMap = null;
 var myLayers = [];
 var myQueryLayerGroup = new L.layerGroup();
+
+// userkey-gxuser:19f09930757f2caf935eed597a70811cee748db3
+var queryUrlTemplate = 'http://220.231.19.115:2498/19f09930757f2caf935eed597a70811cee748db3/ArcGIS/MapService/Catalog/{0}.gis';
 // '1': base map layer
 // 2': over layer
 var baseLayerType = '1';
@@ -75,20 +78,28 @@ function queryLayerObjs() {
     var keyWords = $('#searchTxt')[0].value.trim();
     var layerIds = getSelOverLayerIds();
     if (keyWords != '' && layerIds.length > 0) {
-        //todo ajax request by keywords and layersid
         // var results = resultsData;
-        // userkey:19f09930757f2caf935eed597a70811cee748db3
-        var queryUrl = 'http://220.231.19.115:2498/bc94451a4afcaaecc31d72b37344ec78b6b34132/ArcGIS/MapService/Catalog/SDE.BLUE.gis';
         L.esri.Support.cors = false;
-        L.esri.query({
-            url: queryUrl
-        }).where('OBJECTID<20').run(function (errMsg, queryResults, response) {
-            if(!errMsg){
-                showQueryResults(queryResults, response);
-            }else {
-                messageShow('warn', errMsg.message);
+        var queryEnable = false;
+        for (var i = 0; i < layerIds.length; i++){
+            if(layerIds[i].indexOf('SDE') < 0){
+                continue;
             }
-        });
+            queryEnable = true;
+            var queryUrl = stringFormat(queryUrlTemplate, layerIds[i]);
+            L.esri.query({
+                url: queryUrl
+            }).where('OBJECTID<20').run(function (errMsg, queryResults, response) {
+                if(!errMsg){
+                    showQueryResults(queryResults, response);
+                }else {
+                    messageShow('warn', errMsg.message);
+                }
+            });
+        }
+        if (!queryEnable){
+            messageShow('warn', '请选择可以查询的图层!');
+        }
     }else {
         messageShow('warn', '请输入关键字并且选择叠加的图层!');
     }
@@ -102,49 +113,51 @@ function getSelOverLayerIds() {
     return ids;
 }
 function showQueryResults(results, resContext) {
-    if (results.features != null && results.features.length > 0) {
+    if (!(results.features != null && results.features.length > 0)) {
+        messageShow('warn', '没有查询到结果')
+    } else {
         myQueryLayerGroup = new L.layerGroup();
         var queryR = L.geoJSON(results, {
             // pointToLayer: function (geoJsonPoint, latlng) {
             //     //config here if has point feature
             // },
             style: function (feature) {
-                return {color: 'red'};
+                return {color: '#291eed'};
             },
             onEachFeature: function (jsonfeature, layer) {
-
-                // L.geoJSON(feature).bindPopup(msg).bindTooltip(name);
                 layer.on('click', function (e) {
-                    debugger;
                     var name = 'OBJECTID: ' + e.target.feature.properties.OBJECTID;
                     var msg = 'OBJECTID: ' + e.target.feature.properties.OBJECTID + '</br>' +
-                        'SHAPE_LENG: ' + e.target.feature.properties.SHAPE_LENG ;
+                        'SHAPE_LENG: ' + e.target.feature.properties.SHAPE_LENG;
                     myQueryLayerGroup.clearLayers();
-                    var mark = new L.marker(e.latlng).bindPopup(msg).bindTooltip(name).openTooltip();
+                    var mark = new L.marker(e.latlng).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip'});
+                    var selObj = L.geoJSON(e.target.feature, { style: function (feature) {
+                            return {color: 'red'};
+                        },});
+                    myQueryLayerGroup.addLayer(selObj);
                     myQueryLayerGroup.addLayer(mark);
+                    mark.openPopup();
+                    myMap.fitBounds(e.target._bounds);
                 })
             }
         });
         myMap.addLayer(queryR);
         myMap.fitBounds(queryR.getBounds());
         myMap.addLayer(myQueryLayerGroup);
-
-        // var resultsMarkers = new L.layerGroup();
-        // for (var i = 0; i < count; i++){
-        //     var lat = results[i].x;
-        //     var lng = results[i].y;
-        //     var msg = results[i].msg;
-        //     var name = results[i].name;
-        //     if(lat != '' && lng != ''){
-        //         var mark = new L.marker([lat, lng]).bindPopup(msg).bindTooltip(name);
-        //         resultsMarkers.addLayer(mark);
-        //     }
-        // }
-        // myMap.addLayer(resultsMarkers);
-    }else {
-        messageShow('warn', '没有查询到结果')
     }
 }
+
+function stringFormat() {
+    if (arguments.length == 0)
+        return null;
+    var str = arguments[0];
+    for (var i = 1; i < arguments.length; i++) {
+        var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+        str = str.replace(re, arguments[i]);
+    }
+    return str;
+}
+
 function messageShow(msgType, msginfo) {
     $("body").overhang({
         type: msgType,  //"warn"
@@ -411,7 +424,7 @@ var layerData = [
             'type': 'fold',
             'text': '水务',
             'children': [{
-                    'id': 'id21',
+                    'id': 'SDE.BLUE',
                     'type': 'leaf',
                     'text': '蓝线规划',
                     'icon': 'img/layer/layermini.png',

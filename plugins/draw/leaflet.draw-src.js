@@ -4495,11 +4495,7 @@ L.Draw.Clearshapes = L.EditToolbar.Delete.extend({
     },
 
     _removeAllMarkersLayer:function () {
-        this._map.eachLayer(function (layerT, thisContext) {
-            if (layerT instanceof L.Marker) {
-                myMap.removeLayer(layerT);
-            }
-        })
+		this._map.removeLayer(myQueryLayerGroup);
     },
 
     _cancelDelete: function (e) {

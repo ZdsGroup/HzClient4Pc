@@ -90,3 +90,10 @@ input:focus {
 #layerContainer{
     min-height: 50px;
 }
+/*查询*/
+.query-marker-tooltip {
+    border: 1px solid #919187;
+    color: #291eed;
+    background: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+}
