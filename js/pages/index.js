@@ -5,6 +5,7 @@
 var myMap = null;
 var myLayers = [];
 var myQueryLayerGroup = new L.layerGroup();
+var myQueryHighLayerGroup = new L.layerGroup();
 
 // userkey-gxuser:
 var userkey = '19f09930757f2caf935eed597a70811cee748db3';
@@ -117,7 +118,10 @@ function showQueryResults(results, resContext) {
     if (!(results.features != null && results.features.length > 0)) {
         messageShow('warn', '没有查询到结果')
     } else {
-        myQueryLayerGroup = new L.layerGroup();
+        myQueryLayerGroup.clearLayers();
+        myQueryHighLayerGroup.clearLayers();
+        var NameStr = resContext.displayFieldName;
+        var displayFieldNameStrs = getFieldNames(resContext.fields);
         var queryR = L.geoJSON(results, {
             // pointToLayer: function (geoJsonPoint, latlng) {
             //     //config here if has point feature
@@ -127,25 +131,53 @@ function showQueryResults(results, resContext) {
             },
             onEachFeature: function (jsonfeature, layer) {
                 layer.on('click', function (e) {
-                    var name = 'OBJECTID: ' + e.target.feature.properties.OBJECTID;
-                    var msg = 'OBJECTID: ' + e.target.feature.properties.OBJECTID + '</br>' +
-                        'SHAPE_LENG: ' + e.target.feature.properties.SHAPE_LENG;
-                    myQueryLayerGroup.clearLayers();
+                    var name = getFeatureName(NameStr, e.target.feature.properties);
+                    var msg = getFeatureMsg(displayFieldNameStrs, e.target.feature.properties);
+                    myQueryHighLayerGroup.clearLayers();
                     var mark = new L.marker(e.latlng).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip'});
                     var selObj = L.geoJSON(e.target.feature, { style: function (feature) {
                             return {color: 'red'};
                         },});
-                    myQueryLayerGroup.addLayer(selObj);
-                    myQueryLayerGroup.addLayer(mark);
+                    myQueryHighLayerGroup.addLayer(selObj);
+                    myQueryHighLayerGroup.addLayer(mark);
                     mark.openPopup();
                     myMap.fitBounds(e.target._bounds);
                 })
             }
         });
-        myMap.addLayer(queryR);
-        myMap.fitBounds(queryR.getBounds());
+        myQueryLayerGroup.addLayer(queryR);
         myMap.addLayer(myQueryLayerGroup);
+        myMap.addLayer(myQueryHighLayerGroup);
+        myMap.fitBounds(queryR.getBounds());
     }
+}
+
+function getFieldNames(fieldsArr) {
+    var count = fieldsArr.length;
+    var arrT = [];
+    for (var i =0; i < count; i++){
+        arrT.push(fieldsArr[i].name);
+    }
+    return arrT;
+}
+
+function getFeatureName(fieldStr, context) {
+    var tempStr = '';
+    tempStr = fieldStr + ': ' + context[fieldStr];
+    return tempStr;
+}
+
+function getFeatureMsg(fieldStrs, context) {
+    var tempStr = '';
+    var count = fieldStrs.length;
+    for (var i = 0; i < count; i++){
+        var str = fieldStrs[i];
+        tempStr = tempStr + str + ': ' + context[str];
+        if (i != count-1){
+            tempStr = tempStr + '</br>';
+        }
+    }
+    return tempStr;
 }
 
 function stringFormat() {
@@ -412,7 +444,7 @@ var layerData = [
                     'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
                 },
                 {
-                    'id': 'id12',
+                    'id': 'SDE.JSYDGMKZX',
                     'type': 'leaf',
                     'text': '生态严控区',
                     'icon': 'img/layer/layermini.png',
@@ -438,7 +470,7 @@ var layerData = [
             'type': 'fold',
             'text': '交通',
             'children': [{
-                    'id': 'id31',
+                    'id': 'SDE.CGGLZG',
                     'type': 'leaf',
                     'text': '城市总体规划',
                     'icon': 'img/layer/layermini.png',
@@ -472,7 +504,7 @@ var layerData = [
                     'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92/MapServer'
                 },
                 {
-                    'id': 'id43',
+                    'id': 'SDE.ZDXM',
                     'type': 'leaf',
                     'text': '重点项目',
                     'icon': 'img/layer/layermini.png',
