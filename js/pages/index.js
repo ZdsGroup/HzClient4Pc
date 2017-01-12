@@ -80,7 +80,6 @@ function queryLayerObjs() {
     var keyWords = $('#searchTxt')[0].value.trim();
     var layerIds = getSelOverLayerIds();
     if (keyWords != '' && layerIds.length > 0) {
-        // var results = resultsData;
         L.esri.Support.cors = false;
         var queryEnable = false;
         for (var i = 0; i < layerIds.length; i++){
@@ -396,37 +395,6 @@ function changeDrawLocalMsg() {
 }
 
 //all temp date
-// var layerData1 = [
-//     {   'id': 'root',
-//         'type': 'fold',
-//         'text': '服务目录', 'children': [
-//         {
-//             'id': 'id1',
-//             'type': 'fold',
-//             'text': '基础服务',
-//             'children': [{
-//                 'id': 'id11',
-//                 'type': 'leaf',
-//                 'text': '惠城区行政区划',
-//                 'icon': 'img/layer/layermini.png',
-//                 'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%83%A0%E5%9F%8E%E5%8C%BA%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92/MapServer'
-//             }],
-//         },
-//         {
-//             'id': 'id2',
-//             'type': 'fold',
-//             'text': '水务专题服务',
-//             'children': [{
-//                 'id': 'id21',
-//                 'type': 'leaf',
-//                 'text': '水源保护区',
-//                 'icon': 'img/layer/layermini.png',
-//                 'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
-//             }],
-//         },
-//     ]
-//     }
-// ];
 
 var layerData = [
     {   'id': 'root',
