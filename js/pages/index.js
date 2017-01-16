@@ -6,6 +6,7 @@ var myMap = null;
 var myLayers = [];
 var myQueryLayerGroup = new L.layerGroup();
 var myQueryHighLayerGroup = new L.layerGroup();
+var maxZoomShow = 9;
 
 // userkey-gxuser:
 var userkey = '19f09930757f2caf935eed597a70811cee748db3';
@@ -88,9 +89,13 @@ function queryLayerObjs() {
             }
             queryEnable = true;
             var queryUrl = stringFormat(queryUrlTemplate, userkey, layerIds[i]);
+            var whereStr = "OBJECTID<20";
+            if (layerIds[i] == 'SDE.BKYDWW'){
+                whereStr = "文物点名称 like '%" +keyWords+ "%'";
+            }
             L.esri.query({
                 url: queryUrl
-            }).where('OBJECTID<20').run(function (errMsg, queryResults, response) {
+            }).where(whereStr).run(function (errMsg, queryResults, response) {
                 if(!errMsg){
                     showQueryResults(queryResults, response);
                 }else {
@@ -122,9 +127,11 @@ function showQueryResults(results, resContext) {
         var NameStr = resContext.displayFieldName;
         var displayFieldNameStrs = getFieldNames(resContext.fields);
         var queryR = L.geoJSON(results, {
-            // pointToLayer: function (geoJsonPoint, latlng) {
-            //     //config here if has point feature
-            // },
+            pointToLayer: function (geoJsonPoint, latlng) {
+                var name = getFeatureName(NameStr, geoJsonPoint.properties);
+                var msg = getFeatureMsg(displayFieldNameStrs, geoJsonPoint.properties);
+                return L.marker(latlng).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip'});
+            },
             style: function (feature) {
                 return {color: '#291eed'};
             },
@@ -133,21 +140,27 @@ function showQueryResults(results, resContext) {
                     var name = getFeatureName(NameStr, e.target.feature.properties);
                     var msg = getFeatureMsg(displayFieldNameStrs, e.target.feature.properties);
                     myQueryHighLayerGroup.clearLayers();
-                    var mark = new L.marker(e.latlng).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip'});
-                    var selObj = L.geoJSON(e.target.feature, { style: function (feature) {
-                            return {color: 'red'};
-                        },});
-                    myQueryHighLayerGroup.addLayer(selObj);
-                    myQueryHighLayerGroup.addLayer(mark);
-                    mark.openPopup();
-                    myMap.fitBounds(e.target._bounds);
-                })
+                    if(e.target.feature.geometry.type != 'Point'){
+                        var mark = new L.marker(e.latlng).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip'});
+                        var selObj = L.geoJSON(e.target.feature, { style: function (feature) {
+                                return {color: 'red'};
+                            },});
+                        myQueryHighLayerGroup.addLayer(selObj);
+                        myQueryHighLayerGroup.addLayer(mark);
+                        mark.openPopup();
+                        myMap.fitBounds(e.target._bounds, {maxZoom:maxZoomShow});
+                    }else {
+                        this.openPopup();
+                        myMap.setView(e.latlng, maxZoomShow);
+                    }
+                });
+                layer.bindTooltip(getFeatureName(NameStr, layer.feature.properties), {className: 'query-marker-tooltip'});
             }
         });
         myQueryLayerGroup.addLayer(queryR);
         myMap.addLayer(myQueryLayerGroup);
         myMap.addLayer(myQueryHighLayerGroup);
-        myMap.fitBounds(queryR.getBounds());
+        myMap.fitBounds(queryR.getBounds(),{maxZoom:maxZoomShow});
     }
 }
 
@@ -405,9 +418,9 @@ var layerData = [
             'type': 'fold',
             'text': '环保',
             'children': [{
-                    'id': 'id11',
+                    'id': 'SDE.BKYDWW',
                     'type': 'leaf',
-                    'text': '水源保护区',
+                    'text': '不可移动文物',
                     'icon': 'img/layer/layermini.png',
                     'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%B0%B4%E6%BA%90%E4%BF%9D%E6%8A%A4%E5%8C%BA/MapServer'
                 },
@@ -465,9 +478,9 @@ var layerData = [
                 'data': ''
                 },
                 {
-                    'id': 'id42',
+                    'id': 'SDE.KGPH0828',
                     'type': 'leaf',
-                    'text': '城市总体规划',
+                    'text': '控规拼合',
                     'icon': 'img/layer/layermini.png',
                     'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92/MapServer'
                 },
