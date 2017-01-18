@@ -6,6 +6,7 @@ var myMap = null;
 var myLayers = [];
 var myQueryLayerGroup = new L.layerGroup();
 var myQueryHighLayerGroup = new L.layerGroup();
+var myMarkHigh = null;
 var maxZoomShow = 8;
 
 // userkey-gxuser:
@@ -124,6 +125,16 @@ function showQueryResults(results, resContext) {
     if (!(results.features != null && results.features.length > 0)) {
         messageShow('warn', '没有查询到结果')
     } else {
+        var redIcon = L.icon({
+            iconUrl: 'libs/leaflet/images/marker-red.png',
+            shadowUrl: 'libs/leaflet/images/marker-shadow.png',
+            iconSize:    [25, 41],
+            iconAnchor:  [12, 41],
+            popupAnchor: [1, -34],
+            tooltipAnchor: [16, -28],
+            shadowSize:  [41, 41]
+
+        });
         myQueryLayerGroup.clearLayers();
         myQueryHighLayerGroup.clearLayers();
         var NameStr = resContext.displayFieldName;
@@ -152,7 +163,12 @@ function showQueryResults(results, resContext) {
                         mark.openPopup();
                         myMap.fitBounds(e.target._bounds, {maxZoom:maxZoomShow});
                     }else {
+                        if(myMarkHigh && myMarkHigh._leaflet_id != this._leaflet_id){
+                            myMarkHigh.setIcon(new L.Icon.Default());
+                        }
+                        this.setIcon(redIcon);
                         this.openPopup();
+                        myMarkHigh = this;
                         myMap.setView(e.latlng, maxZoomShow);
                     }
                 });
