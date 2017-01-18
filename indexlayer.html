@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="libs/leaflet/leaflet.css"/>
 	<link rel="stylesheet" href="plugins/layer/jstree/themes/default/style.min.css">
 	<link rel="stylesheet" href="plugins/layer/iconlayer/iconLayers.css">
+	<link rel="stylesheet" href="plugins/draw/leaflet.draw-src.css">
+	<link rel="stylesheet" href="plugins/msgdialog/overhang.css">
 	<!--<script src="libs/jquery/1.7.2/jquery.min.js"></script>-->
 	<script src="libs/jquery/1.11.0/jquery-1.11.0.min.js"></script>
 	<script src="libs/leaflet/leaflet-src.js"></script>
@@ -17,17 +19,17 @@
 	<script src="plugins/layer/jquery.popmenu.js"></script>
 	<script src="plugins/layer/jstree/jstree.js"></script>
 	<script src="plugins/layer/iconlayer/iconLayers.js"></script>
+	<script src="plugins/draw/leaflet.draw-src.js"></script>
+	<script src="plugins/msgdialog/overhang.js"></script>
+	<script src="libs/jquery/1.11.0/jquery-ui.min.js"></script>
 
 	<!--Load cmn js and css-->
 	<link rel="stylesheet" href="css/cmn/utils.css">
 	<script src="js/cmn/mapservice.js"></script>
 	<script src="js/pages/index.js"></script>
 
-	<link rel="stylesheet" href="plugins/draw/leaflet.draw-src.css">
-	<script src="plugins/draw/leaflet.draw-src.js"></script>
-	<link rel="stylesheet" href="plugins/msgdialog/overhang.css">
-	<script src="plugins/msgdialog/overhang.js"></script>
-	<script src="libs/jquery/1.11.0/jquery-ui.min.js"></script>
+	<script src="plugins/load/center-loader.js"></script>
+
 
 	<style>
 		body { margin:0; padding:0; }
@@ -38,8 +40,6 @@
 		}
 	</style>
 
-
-
 </head>
 <body>
 <div id="searchPanel">
@@ -47,6 +47,8 @@
 		<input class="inputbox" type="text" name="search" id="searchTxt">
 		<input class="submit" type="button" value="Search" id="searchBt">
 	</div>
+</div>
+<div id="loadingPanel">
 </div>
 <div id="layerPanel">
     <span class="layer_pop_ctrl">
@@ -71,8 +73,12 @@
             baseMapChangeInit();
 //            toolBarInit();
             toolBarInitTest();
+//            loadingInitTest();
         }
     )
+	function loadingInitTest() {
+        $('#map').loader('show','<img style="height:50px; width:50px;" src="img/load/loader1.gif">');
+    }
 	function toolBarInitTest() {
 //debugger
         changeDrawLocalMsg();

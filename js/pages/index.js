@@ -6,7 +6,7 @@ var myMap = null;
 var myLayers = [];
 var myQueryLayerGroup = new L.layerGroup();
 var myQueryHighLayerGroup = new L.layerGroup();
-var maxZoomShow = 9;
+var maxZoomShow = 8;
 
 // userkey-gxuser:
 var userkey = '19f09930757f2caf935eed597a70811cee748db3';
@@ -81,6 +81,7 @@ function queryLayerObjs() {
     var keyWords = $('#searchTxt')[0].value.trim();
     var layerIds = getSelOverLayerIds();
     if (keyWords != '' && layerIds.length > 0) {
+        $('#loadingPanel').loader('show');
         L.esri.Support.cors = false;
         var queryEnable = false;
         for (var i = 0; i < layerIds.length; i++){
@@ -96,6 +97,7 @@ function queryLayerObjs() {
             L.esri.query({
                 url: queryUrl
             }).where(whereStr).run(function (errMsg, queryResults, response) {
+                $('#loadingPanel').loader('hide');
                 if(!errMsg){
                     showQueryResults(queryResults, response);
                 }else {
