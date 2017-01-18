@@ -20,17 +20,9 @@ $.fn.loader = function(action,spinner) {
             mapHeight = myMap.getSize().y;
 			$loader = $('<div class="loader"></div>').css({
 				'position': 'absolute',
-				// 'width': '50px',
-				// 'height': '50px',
-				// 'background-color': 'rgba(255,255,255,0)',
-				// 'border-radius': '3px'
 			});
 			$loader.attr('parent_position',parent_position);
-			$spinner = $(spinner).css({
-                // 'position': 'absolute',
-		    	// 'color': '#f9d61e',
-			});
-			$loader.html($spinner);
+			$loader.html($(spinner));
             marginLeft = $loader.width()/2;
             marginTop = $loader.height()/2;
             $loader.css({

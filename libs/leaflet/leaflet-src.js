@@ -10467,7 +10467,9 @@ L.extend(L.GeoJSON, {
 			return new L.FeatureGroup(layers);
 
 		default:
-			throw new Error('Invalid GeoJSON object.');
+			// throw new Error('Invalid GeoJSON object.');
+			//custom by zhaotao
+            return null;
 		}
 	},
 
