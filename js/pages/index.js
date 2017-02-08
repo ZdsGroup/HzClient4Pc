@@ -9,6 +9,8 @@ var myQueryHighLayerGroup = new L.layerGroup();
 var myMarkHigh = null;
 var maxZoomShow = 8;
 
+var demoLayerKey = 'demolayer';
+
 // userkey-gxuser:
 var userkey = '19f09930757f2caf935eed597a70811cee748db3';
 var queryUrlTemplate = 'http://220.231.19.115:2498/{0}/ArcGIS/MapService/Catalog/{1}.gis';
@@ -90,6 +92,41 @@ function queryLayerObjs() {
                 continue;
             }
             queryEnable = true;
+
+            // demo data query and show for temp start
+            var layerT = getLayerByLayerId(layerIds[i]);
+            if (layerT.layer.options.url.indexOf(demoLayerKey) >= 0){
+                var redIcon = L.icon({
+                    iconUrl: 'libs/leaflet/images/marker-red.png',
+                    shadowUrl: 'libs/leaflet/images/marker-shadow.png',
+                    iconSize:    [25, 41],
+                    iconAnchor:  [12, 41],
+                    popupAnchor: [1, -34],
+                    tooltipAnchor: [16, -28],
+                    shadowSize:  [41, 41]
+
+                });
+                myQueryLayerGroup.clearLayers();
+                if (resultsData.length > 0){
+                    var count = resultsData.length;
+                    for (var i = 0; i < count; i++){
+                        var lat = resultsData[i].x;
+                        var lng = resultsData[i].y;
+                        var msg = getDemoDataMsg(resultsData[i]);
+                        var name = resultsData[i].name;
+                        if(lat != '' && lng != ''){
+                            var mark = new L.marker([lat, lng]).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip', permanent: true});
+                            myQueryLayerGroup.addLayer(mark);
+                        }
+                    }
+                }
+                myMap.addLayer(myQueryLayerGroup);
+                myMap.setView(L.latLng(resultsData[0].x, resultsData[0].y), maxZoomShow);
+                $('#loadingPanel').loader('hide');
+                continue;
+            }
+            // demo data query and show for temp end
+
             var queryUrl = stringFormat(queryUrlTemplate, userkey, layerIds[i]);
             var whereStr = "OBJECTID<20";
             if (layerIds[i] == 'SDE.BKYDWW'){
@@ -347,7 +384,9 @@ function removeMapOverLayer(layerId, layerAdd) {
 function addMapOverLayer(layerId, layerTxt, layerAdd) {
     var restlayer = getEsriRestDymLayer(layerAdd);
     if (restlayer){
-        myMap.addLayer(restlayer);
+        if(layerAdd != 'demolayer'){
+            myMap.addLayer(restlayer);
+        }
         addLayerToMyLayers(layerId, restlayer, layerTxt, overLayerType);
     }
 }
@@ -461,6 +500,182 @@ var layerData = [
                     'text': '蓝线规划',
                     'icon': 'img/layer/layermini.png',
                     'data': 'http://106.39.231.23/ArcGIS/rest/services/HZDG/LXGH/MapServer'
+                },
+                {
+                    'id': 'id21',
+                    'type': 'fold',
+                    'text': '河湖',
+                    'children': [{
+                            'id': 'id211',
+                            'type': 'leaf',
+                            'text': '湖泊',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id212',
+                            'type': 'leaf',
+                            'text': '河流',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        }
+                    ]
+                },
+                {
+                    'id': 'id22',
+                    'type': 'fold',
+                    'text': '水利工程',
+                    'children': [{
+                            'id': 'SDE.P201',
+                            'type': 'leaf',
+                            'text': '水库工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': demoLayerKey
+                        },
+                        {
+                            'id': 'id222',
+                            'type': 'leaf',
+                            'text': '水电站工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id223',
+                            'type': 'leaf',
+                            'text': '水闸工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id224',
+                            'type': 'leaf',
+                            'text': '橡胶坝',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id225',
+                            'type': 'leaf',
+                            'text': '泵站工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id226',
+                            'type': 'leaf',
+                            'text': '引调水工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id227',
+                            'type': 'leaf',
+                            'text': '提防工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id228',
+                            'type': 'leaf',
+                            'text': '农村供水工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        }
+                    ]
+                },
+                {
+                    'id': 'id23',
+                    'type': 'fold',
+                    'text': '经济社会用水',
+                    'children': [{
+                            'id': 'id231',
+                            'type': 'leaf',
+                            'text': '规模化畜禽养殖场',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id232',
+                            'type': 'leaf',
+                            'text': '公共供水企业',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id233',
+                            'type': 'leaf',
+                            'text': '工业企业',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        }
+                    ]
+                },
+                {
+                    'id': 'id24',
+                    'type': 'fold',
+                    'text': '河湖开发治理保护',
+                    'children': [{
+                            'id': 'id241',
+                            'type': 'leaf',
+                            'text': '河湖取水口',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id242',
+                            'type': 'leaf',
+                            'text': '地表水水源地',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id243',
+                            'type': 'leaf',
+                            'text': '入河湖排污口',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        }
+                    ]
+                },
+                {
+                    'id': 'id25',
+                    'type': 'fold',
+                    'text': '水土保持',
+                    'children': [{
+                            'id': 'id251',
+                            'type': 'leaf',
+                            'text': '治沟骨干工程',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        }
+                    ]
+                },
+                {
+                    'id': 'id26',
+                    'type': 'fold',
+                    'text': '水利行业能力建设',
+                    'children': [{
+                            'id': 'id261',
+                            'type': 'leaf',
+                            'text': '水利行业单位',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id262',
+                            'type': 'leaf',
+                            'text': '水利行政机关',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        },
+                        {
+                            'id': 'id263',
+                            'type': 'leaf',
+                            'text': '水利事业单位',
+                            'icon': 'img/layer/layermini.png',
+                            'data': ''
+                        }
+                    ]
                 }
             ],
         },
@@ -528,33 +743,46 @@ var layerData = [
     }
 ];
 
+function getDemoDataMsg(resultsData) {
+    var fieldsDemo = resultsData.msg;
+    var tempStrDemo = '';
+    var countDemo = fieldsDemo.length;
+    for (var i = 0; i < countDemo; i++){
+        tempStrDemo = tempStrDemo + fieldsDemo[i].name + ': ' + fieldsDemo[i].value;
+        if (i != countDemo-1){
+            tempStrDemo = tempStrDemo + '</br>';
+        }
+    }
+    return tempStrDemo;
+};
+
 var resultsData = [
     {
-        id: '11',
-        name: '名称1',
-        x: '22.908465647514895',
-        y: '114.65441977583869',
-        msg: '测试信息1'
+        id: '81104000',
+        name: '红花湖水库',
+        x: '23.074323',
+        y: '114.358578',
+        msg: [{"name":"水库名称","value":"红花湖水库"},{"name":"所在河流名称","value":"东江"},{"name":"工程规模","value":"中型"},{"name":"总库容(万m³)","value":"1990"},{"name":"坝址控制流域面积(km²)","value":"6.85"},{"name":"主坝尺寸坝高(m)","value":"34.5"},{"name":"调洪库容(万m³)","value":"260"},{"name":"坝址多年平均径流量(万m³)","value":"660"},{"name":"主坝尺寸坝长(m)","value":"179"},{"name":"防洪库容(万m³)","value":"190"},{"name":"高程系统","value":"1956年黄海高程系统"},{"name":"兴利库容(万m³)","value":"600"},{"name":"坝顶高程(m)","value":"58.5"},{"name":"死库容(万m³)","value":"1130"},{"name":"主要挡水建筑物","value":"挡水坝"},{"name":"正常蓄水位相应水面面积(km²)","value":"1.37"},{"name":"挡水主坝类型按材料分","value":"土坝"},{"name":"校核洪水位(m)","value":"57.35"},{"name":"挡水主坝类型按结构分","value":"均质坝"},{"name":"设计洪水位(m)","value":"56.93"},{"name":"主要泄洪建筑物型式","value":"岸坡式"},{"name":"防洪高水位(m)","value":"56.93"},{"name":"正常蓄水位(m)","value":"55.5"},{"name":"防洪限制水位(m)","value":"55.5"},{"name":"死水位(m)","value":"50.5"},{"name":"水库类型","value":"山丘水库"},{"name":"生产安置人口(万人)","value":""},{"name":"建成时间(年)","value":"1994"},{"name":"建成时间(月)","value":"9"},{"name":"水库调节性能","value":"多年调节"},{"name":"工程等别","value":"Ⅲ"},{"name":"最大泄洪流量(m³/s)","value":"14.56"},{"name":"设计洪水标准［重现期］(年)","value":"100"},{"name":"校核洪水标准［重现期］(年)","value":"1000"},{"name":"管理单位名称","value":"惠州市红花湖景区管理处"},{"name":"归口管理部门","value":"其他部门"}]
     },
-    {
-        id: '12',
-        name: '名称2',
-        x: '22.96459401518446',
-        y: '114.78884548788918',
-        msg: '测试信息2'
-    },
-    {
-        id: '13',
-        name: '名称3',
-        x: '23.040177376450007',
-        y: '114.71958857042789',
-        msg: '测试信息3'
-    },
-    {
-        id: '14',
-        name: '名称4',
-        x: '23.001352462861067',
-        y: '114.57422115272773',
-        msg: '测试信息4'
-    },
+    // {
+    //     id: '12',
+    //     name: '名称2',
+    //     x: '22.96459401518446',
+    //     y: '114.78884548788918',
+    //     msg: '测试信息2'
+    // },
+    // {
+    //     id: '13',
+    //     name: '名称3',
+    //     x: '23.040177376450007',
+    //     y: '114.71958857042789',
+    //     msg: '测试信息3'
+    // },
+    // {
+    //     id: '14',
+    //     name: '名称4',
+    //     x: '23.001352462861067',
+    //     y: '114.57422115272773',
+    //     msg: '测试信息4'
+    // },
 ];
