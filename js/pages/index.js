@@ -8,6 +8,7 @@ var myQueryLayerGroup = new L.layerGroup();
 var myQueryHighLayerGroup = new L.layerGroup();
 var myMarkHigh = null;
 var maxZoomShow = 8;
+var markPopMaxHeight = 200;
 
 var demoLayerKey = 'demolayer';
 
@@ -115,13 +116,13 @@ function queryLayerObjs() {
                         var msg = getDemoDataMsg(resultsData[i]);
                         var name = resultsData[i].name;
                         if(lat != '' && lng != ''){
-                            var mark = new L.marker([lat, lng]).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip', permanent: true});
+                            var mark = new L.marker([lat, lng]).bindPopup(msg,{maxHeight: markPopMaxHeight}).bindTooltip(name, {className: 'query-marker-tooltip', permanent: true});
                             myQueryLayerGroup.addLayer(mark);
                         }
                     }
                 }
                 myMap.addLayer(myQueryLayerGroup);
-                myMap.setView(L.latLng(resultsData[0].x, resultsData[0].y), maxZoomShow);
+                myMap.fitBounds(getDemoDataBounds(resultsData),{maxZoom:maxZoomShow});
                 $('#loadingPanel').loader('hide');
                 continue;
             }
@@ -180,7 +181,7 @@ function showQueryResults(results, resContext) {
             pointToLayer: function (geoJsonPoint, latlng) {
                 var name = getFeatureName(NameStr, geoJsonPoint.properties);
                 var msg = getFeatureMsg(displayFieldNameStrs, geoJsonPoint.properties);
-                return L.marker(latlng).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip'});
+                return L.marker(latlng).bindPopup(msg,{maxHeight: markPopMaxHeight}).bindTooltip(name, {className: 'query-marker-tooltip'});
             },
             style: function (feature) {
                 return {color: '#291eed'};
@@ -191,7 +192,7 @@ function showQueryResults(results, resContext) {
                     var msg = getFeatureMsg(displayFieldNameStrs, e.target.feature.properties);
                     myQueryHighLayerGroup.clearLayers();
                     if(e.target.feature.geometry.type != 'Point'){
-                        var mark = new L.marker(e.latlng).bindPopup(msg).bindTooltip(name, {className: 'query-marker-tooltip'});
+                        var mark = new L.marker(e.latlng).bindPopup(msg,{maxHeight: markPopMaxHeight}).bindTooltip(name, {className: 'query-marker-tooltip'});
                         var selObj = L.geoJSON(e.target.feature, { style: function (feature) {
                                 return {color: 'red'};
                             },});
@@ -464,7 +465,7 @@ function changeDrawLocalMsg() {
     L.drawLocal.edit.handlers.remove.tooltip.text = '单击对象删除，ESC键结束';
 }
 
-//all temp date
+//all temp date and temp function
 
 var layerData = [
     {   'id': 'root',
@@ -748,7 +749,7 @@ function getDemoDataMsg(resultsData) {
     var tempStrDemo = '';
     var countDemo = fieldsDemo.length;
     for (var i = 0; i < countDemo; i++){
-        tempStrDemo = tempStrDemo + fieldsDemo[i].name + ': ' + fieldsDemo[i].value;
+        tempStrDemo = tempStrDemo + fieldsDemo[i].name + ':   ' + fieldsDemo[i].value;
         if (i != countDemo-1){
             tempStrDemo = tempStrDemo + '</br>';
         }
@@ -756,21 +757,30 @@ function getDemoDataMsg(resultsData) {
     return tempStrDemo;
 };
 
+function getDemoDataBounds(resultsData) {
+    var count = resultsData.length;
+    var points = [];
+    for (var i = 0; i < count; i++){
+        points.push([resultsData[i].x, resultsData[i].y]);
+    }
+    return L.latLngBounds(points);
+}
+
 var resultsData = [
     {
-        id: '81104000',
+        id: '441302000052',
         name: '红花湖水库',
         x: '23.074323',
         y: '114.358578',
         msg: [{"name":"水库名称","value":"红花湖水库"},{"name":"所在河流名称","value":"东江"},{"name":"工程规模","value":"中型"},{"name":"总库容(万m³)","value":"1990"},{"name":"坝址控制流域面积(km²)","value":"6.85"},{"name":"主坝尺寸坝高(m)","value":"34.5"},{"name":"调洪库容(万m³)","value":"260"},{"name":"坝址多年平均径流量(万m³)","value":"660"},{"name":"主坝尺寸坝长(m)","value":"179"},{"name":"防洪库容(万m³)","value":"190"},{"name":"高程系统","value":"1956年黄海高程系统"},{"name":"兴利库容(万m³)","value":"600"},{"name":"坝顶高程(m)","value":"58.5"},{"name":"死库容(万m³)","value":"1130"},{"name":"主要挡水建筑物","value":"挡水坝"},{"name":"正常蓄水位相应水面面积(km²)","value":"1.37"},{"name":"挡水主坝类型按材料分","value":"土坝"},{"name":"校核洪水位(m)","value":"57.35"},{"name":"挡水主坝类型按结构分","value":"均质坝"},{"name":"设计洪水位(m)","value":"56.93"},{"name":"主要泄洪建筑物型式","value":"岸坡式"},{"name":"防洪高水位(m)","value":"56.93"},{"name":"正常蓄水位(m)","value":"55.5"},{"name":"防洪限制水位(m)","value":"55.5"},{"name":"死水位(m)","value":"50.5"},{"name":"水库类型","value":"山丘水库"},{"name":"生产安置人口(万人)","value":""},{"name":"建成时间(年)","value":"1994"},{"name":"建成时间(月)","value":"9"},{"name":"水库调节性能","value":"多年调节"},{"name":"工程等别","value":"Ⅲ"},{"name":"最大泄洪流量(m³/s)","value":"14.56"},{"name":"设计洪水标准［重现期］(年)","value":"100"},{"name":"校核洪水标准［重现期］(年)","value":"1000"},{"name":"管理单位名称","value":"惠州市红花湖景区管理处"},{"name":"归口管理部门","value":"其他部门"}]
     },
-    // {
-    //     id: '12',
-    //     name: '名称2',
-    //     x: '22.96459401518446',
-    //     y: '114.78884548788918',
-    //     msg: '测试信息2'
-    // },
+    {
+        id: '441322000033',
+        name: '东江枢纽水库',
+        x: '23.137045',
+        y: '114.382324',
+        msg: [{"name":"水库名称","value":"东江枢纽水库"},{"name":"所在河流名称","value":"东江"},{"name":"工程规模","value":"大（2）型"},{"name":"总库容(万m³)","value":"11640"},{"name":"坝址控制流域面积(km²)","value":"25325"},{"name":"坝址多年平均径流量(万m³)","value":"771"},{"name":"高程系统","value":"珠江基面高程系统"},{"name":"兴利库容(万m³)","value":"1419"},{"name":"坝顶高程(m)","value":"17.3"},{"name":"死库容(万m³)","value":"10221"},{"name":"主要挡水建筑物","value":"挡水闸"},{"name":"正常蓄水位相应水面面积(km²)","value":"28"},{"name":"校核洪水位(m)","value":"15.29"},{"name":"设计洪水位(m)","value":"13.91"},{"name":"主要泄洪建筑物型式","value":"闸孔式"},{"name":"正常蓄水位(m)","value":"10.5"},{"name":"死水位(m)","value":"10"},{"name":"水库类型","value":"山丘水库"},{"name":"工程建设情况","value":"已建"},{"name":"建成时间(年)","value":"2007"},{"name":"建成时间(月)","value":"11"},{"name":"水库调节性能","value":"日调节"},{"name":"工程等别","value":"Ⅱ"},{"name":"最大泄洪流量(m³/s)","value":"13000"},{"name":"设计洪水标准［重现期］(年)","value":"50"},{"name":"校核洪水标准［重现期］(年)","value":"200"},{"name":"管理单位名称","value":"广东惠州粤华电力有限公司"},{"name":"归口管理部门","value":"水利部门"},{"name":"管理单位隶属关系","value":"地"},{"name":"是否完成划界","value":"是"},{"name":"是否完成确权","value":"是"}]
+    },
     // {
     //     id: '13',
     //     name: '名称3',
@@ -786,3 +796,5 @@ var resultsData = [
     //     msg: '测试信息4'
     // },
 ];
+
+//all temp date and temp function
